@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import deepkeepLogo from "@/assets/deepkeep-logo.png";
 
 const Terms = () => {
   return (
@@ -7,7 +8,7 @@ const Terms = () => {
         {/* Logo */}
         <div className="flex items-center justify-center mb-8">
           <Link to="/growth-plan">
-            <h1 className="text-2xl font-bold text-primary">Deepkeep</h1>
+            <img src={deepkeepLogo} alt="deepkeep" className="h-12 w-auto" />
           </Link>
         </div>
 
@@ -38,19 +39,33 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-3">4. Privacy Policy</h2>
+              <h2 className="text-2xl font-bold mb-3">4. Content</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Your use of deepkeep is also governed by our Privacy Policy. Please review our Privacy Policy, which also governs the Site and informs users of our data collection practices.
+                All content provided on deepkeep is for informational and educational purposes only. We do not guarantee the accuracy, completeness, or usefulness of any information.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-3">5. Modifications</h2>
+              <h2 className="text-2xl font-bold mb-3">5. Limitation of Liability</h2>
               <p className="text-muted-foreground leading-relaxed">
-                deepkeep may revise these terms of service at any time without notice. By using this platform, you are agreeing to be bound by the then current version of these terms of service.
+                In no event shall deepkeep or its suppliers be liable for any damages arising out of the use or inability to use the materials on our platform.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold mb-3">6. Changes to Terms</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                We reserve the right to modify these terms at any time. Continued use of the service after changes constitutes acceptance of the new terms.
               </p>
             </section>
           </div>
+        </div>
+
+        {/* Back Link */}
+        <div className="text-center pt-8">
+          <Link to="/growth-plan" className="text-primary hover:underline font-semibold">
+            ← Back to Home
+          </Link>
         </div>
       </div>
     </div>

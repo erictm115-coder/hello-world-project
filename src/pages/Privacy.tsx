@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import deepkeepLogo from "@/assets/deepkeep-logo.png";
 
 const Privacy = () => {
   return (
@@ -7,7 +8,7 @@ const Privacy = () => {
         {/* Logo */}
         <div className="flex items-center justify-center mb-8">
           <Link to="/growth-plan">
-            <h1 className="text-2xl font-bold text-primary">Deepkeep</h1>
+            <img src={deepkeepLogo} alt="deepkeep" className="h-12 w-auto" />
           </Link>
         </div>
 
@@ -33,31 +34,52 @@ const Privacy = () => {
             <section>
               <h2 className="text-2xl font-bold mb-3">3. Information Sharing</h2>
               <p className="text-muted-foreground leading-relaxed">
-                We do not share your personal information with third parties except as described in this privacy policy or with your consent.
+                We do not sell, trade, or rent your personal information to third parties. We may share your information with service providers who assist us in operating our platform.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold mb-3">4. Data Security</h2>
               <p className="text-muted-foreground leading-relaxed">
-                We take reasonable measures to help protect your personal information from loss, theft, misuse, unauthorized access, disclosure, alteration, and destruction.
+                We implement appropriate security measures to protect your personal information. However, no method of transmission over the Internet is 100% secure.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-3">5. Your Rights</h2>
+              <h2 className="text-2xl font-bold mb-3">5. Cookies</h2>
               <p className="text-muted-foreground leading-relaxed">
-                You have the right to access, update, or delete your personal information at any time. You may also opt out of receiving promotional communications from us.
+                We use cookies and similar tracking technologies to track activity on our service and hold certain information to improve and analyze our service.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-3">6. Contact Us</h2>
+              <h2 className="text-2xl font-bold mb-3">6. Your Rights</h2>
               <p className="text-muted-foreground leading-relaxed">
-                If you have any questions about this Privacy Policy, please contact us through our support channels.
+                You have the right to access, update, or delete your personal information at any time. Contact us to exercise these rights.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold mb-3">7. Changes to This Policy</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold mb-3">8. Contact Us</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                If you have any questions about this Privacy Policy, please contact us at privacy@deepkeep.com
               </p>
             </section>
           </div>
+        </div>
+
+        {/* Back Link */}
+        <div className="text-center pt-8">
+          <Link to="/growth-plan" className="text-primary hover:underline font-semibold">
+            ← Back to Home
+          </Link>
         </div>
       </div>
     </div>
