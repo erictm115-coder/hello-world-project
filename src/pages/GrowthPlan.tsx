@@ -23,6 +23,7 @@ import timFerrissAuthor from "@/assets/tim-ferriss-author.png";
 import simonSinekAuthor from "@/assets/simon-sinek-author.png";
 import celebrationIllustration from "@/assets/celebration-illustration.png";
 import platformLogos from "@/assets/platform-logos.png";
+import becomeInteresting from "@/assets/become-interesting.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import worldMap from "@/assets/world-map.png";
@@ -34,7 +35,7 @@ const GrowthPlan = () => {
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [carouselIndex, setCarouselIndex] = useState(0);
 
-  const totalSteps = 38;
+  const totalSteps = 37;
 
   // Carousel auto-scroll effect
   useEffect(() => {
@@ -1335,7 +1336,7 @@ const GrowthPlan = () => {
         );
 
       case 36:
-        const CarouselItem = ({ email, insights, minutes }: { email: string; insights: number; minutes: number }) => {
+        const CarouselItem36 = ({ email, insights, minutes }: { email: string; insights: number; minutes: number }) => {
           return (
             <div className="bg-white rounded-lg p-3 shadow-sm border border-border flex-shrink-0 w-full">
               <p className="text-sm font-medium text-foreground">{email}</p>
@@ -1346,7 +1347,7 @@ const GrowthPlan = () => {
           );
         };
 
-        const testimonials = [
+        const testimonials36 = [
           { email: "so*********@gmail.com", insights: 4, minutes: 4 },
           { email: "ge*********@gmail.com", insights: 5, minutes: 3 },
           { email: "ma*********@gmail.com", insights: 7, minutes: 6 },
@@ -1364,19 +1365,9 @@ const GrowthPlan = () => {
               <img src={deepkeepLogo} alt="Deepkeep" className="h-10 w-auto" />
             </div>
 
-            {/* Image */}
+            {/* Main Image */}
             <div className="flex justify-center px-4">
-              <img src={growthComparison} alt="Growth Comparison" className="w-full max-w-[500px] h-auto" />
-            </div>
-
-            {/* Main Title */}
-            <div className="text-center space-y-2 px-2">
-              <h2 className="text-3xl font-bold text-foreground leading-tight">
-                Become the most interesting person in the room
-              </h2>
-              <p className="text-sm text-muted-foreground leading-snug">
-                Based on your answers, we crafted a self-growth plan
-              </p>
+              <img src={becomeInteresting} alt="Become the most interesting person in the room" className="w-full max-w-[600px] h-auto rounded-lg" />
             </div>
 
             {/* Scrolling Testimonial Carousel */}
@@ -1387,9 +1378,9 @@ const GrowthPlan = () => {
                   className="flex gap-3 transition-transform duration-300 ease-out"
                   style={{ transform: `translateX(-${carouselIndex * (100 / 3)}%)` }}
                 >
-                  {testimonials.map((testimonial, idx) => (
+                  {testimonials36.map((testimonial, idx) => (
                     <div key={idx} className="min-w-[calc(33.333%-8px)]">
-                      <CarouselItem
+                      <CarouselItem36
                         email={testimonial.email}
                         insights={testimonial.insights}
                         minutes={testimonial.minutes}
@@ -1680,7 +1671,7 @@ const GrowthPlan = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Fixed Header */}
-      {step !== 33 && step !== 35 && step !== 36 && (
+      {step !== 33 && step !== 36 && (
         <div className="fixed top-0 left-0 right-0 bg-background z-10 border-b border-border">
           <div className="w-full max-w-[600px] mx-auto px-4 pt-4 pb-3 space-y-3">
             {/* Back Button & Logo */}
@@ -1722,7 +1713,7 @@ const GrowthPlan = () => {
       )}
 
       {/* Content with top padding to account for fixed header */}
-      <div className={step === 33 || step === 35 || step === 36 || step === 38 ? "px-4 pb-6" : "pt-[140px] px-4 pb-6"}>
+      <div className={step === 33 || step === 36 || step === 37 ? "px-4 pb-6" : "pt-[140px] px-4 pb-6"}>
         <div className="w-full max-w-[600px] mx-auto">{renderStep()}</div>
       </div>
     </div>
