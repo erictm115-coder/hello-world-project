@@ -1370,21 +1370,21 @@ const GrowthPlan = () => {
               <img src={becomeInteresting} alt="Become the most interesting person in the room" className="w-full max-w-[600px] h-auto rounded-lg" />
             </div>
 
-            {/* Subtitle */}
-            <p className="text-sm font-semibold text-foreground text-center px-2">
-              102 people learned self-growth insights in the last hour
-            </p>
+            {/* Carousel Section with Gray Outline */}
+            <div className="mx-2 border border-gray-300 rounded-lg p-3 space-y-2">
+              {/* Subtitle */}
+              <p className="text-sm font-semibold text-foreground text-center">
+                102 people learned self-growth insights in the last hour
+              </p>
 
-            {/* Scrolling Testimonial Carousel - One at a time */}
-            <div className="space-y-2 py-4">
-              <h3 className="text-sm font-semibold text-foreground px-2">People growing now:</h3>
+              {/* Scrolling Testimonial Carousel - One at a time */}
               <div className="relative overflow-hidden">
                 <div
                   className="flex transition-transform duration-300 ease-out"
                   style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
                 >
                   {testimonials36.map((testimonial, idx) => (
-                    <div key={idx} className="w-full flex-shrink-0 px-2">
+                    <div key={idx} className="w-full flex-shrink-0">
                       <CarouselItem36
                         email={testimonial.email}
                         insights={testimonial.insights}
@@ -1398,49 +1398,10 @@ const GrowthPlan = () => {
 
             {/* CTA Button */}
             <div className="px-2">
-              <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+              <Button onClick={() => setStep(38)} className="w-full h-12 mt-2">
                 Continue
               </Button>
             </div>
-          </div>
-        );
-
-      case 37:
-        return (
-          <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] animate-fade-in">
-            <div className="flex-1 flex flex-col justify-center space-y-6">
-              {!answers.emailFocused ? (
-                <>
-                  <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
-                    Enter your email to create your personal account and track your progress
-                  </h2>
-                  <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                    <Lock className="w-3 h-3" />
-                    <span>We'll never spam you or share your email</span>
-                  </div>
-                </>
-              ) : (
-                <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                  <Lock className="w-3 h-3" />
-                  <span>We'll never spam you or share your email</span>
-                </div>
-              )}
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full h-12 px-4 rounded-md border border-input bg-background text-foreground"
-                value={answers.email || ""}
-                onChange={(e) => handleAnswerWithFeedback("email", e.target.value)}
-                onFocus={() => handleAnswerWithFeedback("emailFocused", true)}
-              />
-            </div>
-            <Button
-              onClick={() => setStep(step + 1)}
-              className="w-full h-12 mt-2"
-              disabled={!answers.email || !answers.email.includes("@")}
-            >
-              Continue with email
-            </Button>
           </div>
         );
 
