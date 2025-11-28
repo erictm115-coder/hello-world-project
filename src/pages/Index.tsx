@@ -4,7 +4,6 @@ import deepkeepLogo from "@/assets/deepkeep-logo.png";
 import headlineImage from "@/assets/headline-image.png";
 import speechBubble from "@/assets/speech-bubble.png";
 import tiredIllustration from "@/assets/tired-illustration-final.png";
-import growthComparison from "@/assets/growth-comparison.png";
 
 const Index = () => {
   return (
@@ -44,34 +43,11 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Outsmart Doomscrolling Section */}
-        <div className="text-center space-y-4 mt-8">
-          <h2 className="text-3xl font-bold text-foreground animate-fade-in">
-            Outsmart doomscrolling:
-          </h2>
-          <p className="text-2xl font-bold text-primary animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            It doesn't stand a chance
-          </p>
-          <p className="text-lg text-muted-foreground animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Become part of the community that escaped doomscrolling. Grow daily and achieve your goals with us.
-          </p>
-        </div>
-
-        {/* Growth Comparison Chart */}
-        <div className="mt-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <img
-            src={growthComparison}
-            alt="Growth comparison chart"
-            className="w-full h-auto rounded-lg"
-          />
-        </div>
-
         {/* CTA Button */}
         <Button
           asChild
-          className="w-full h-12 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-fade-in"
+          className="w-full h-12 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-shadow"
           size="lg"
-          style={{ animationDelay: '0.4s' }}
         >
           <Link to="/growth-plan">Continue</Link>
         </Button>
