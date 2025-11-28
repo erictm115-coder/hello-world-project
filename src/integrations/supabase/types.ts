@@ -14,6 +14,168 @@ export type Database = {
   }
   public: {
     Tables: {
+      fetched_books: {
+        Row: {
+          author: string
+          cover_url: string | null
+          created_at: string | null
+          description: string | null
+          google_books_id: string | null
+          id: string
+          title: string
+          topics: string[] | null
+        }
+        Insert: {
+          author: string
+          cover_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          google_books_id?: string | null
+          id?: string
+          title: string
+          topics?: string[] | null
+        }
+        Update: {
+          author?: string
+          cover_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          google_books_id?: string | null
+          id?: string
+          title?: string
+          topics?: string[] | null
+        }
+        Relationships: []
+      }
+      growth_stats: {
+        Row: {
+          created_at: string | null
+          current_streak: number | null
+          id: string
+          last_activity_date: string | null
+          longest_streak: number | null
+          total_books_read: number | null
+          total_time_minutes: number | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          current_streak?: number | null
+          id?: string
+          last_activity_date?: string | null
+          longest_streak?: number | null
+          total_books_read?: number | null
+          total_time_minutes?: number | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          current_streak?: number | null
+          id?: string
+          last_activity_date?: string | null
+          longest_streak?: number | null
+          total_books_read?: number | null
+          total_time_minutes?: number | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          id: string
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          id: string
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+          username?: string | null
+        }
+        Relationships: []
+      }
+      saved_books: {
+        Row: {
+          book_author: string
+          book_background: string | null
+          book_cover: string | null
+          book_description: string | null
+          book_full_description: string | null
+          book_impact: string | null
+          book_title: string
+          created_at: string | null
+          id: string
+          user_id: string
+        }
+        Insert: {
+          book_author: string
+          book_background?: string | null
+          book_cover?: string | null
+          book_description?: string | null
+          book_full_description?: string | null
+          book_impact?: string | null
+          book_title: string
+          created_at?: string | null
+          id?: string
+          user_id: string
+        }
+        Update: {
+          book_author?: string
+          book_background?: string | null
+          book_cover?: string | null
+          book_description?: string | null
+          book_full_description?: string | null
+          book_impact?: string | null
+          book_title?: string
+          created_at?: string | null
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      saved_ideas: {
+        Row: {
+          book_title: string
+          created_at: string | null
+          id: string
+          idea_explanation: string
+          idea_image_url: string | null
+          idea_title: string
+          user_id: string
+        }
+        Insert: {
+          book_title: string
+          created_at?: string | null
+          id?: string
+          idea_explanation: string
+          idea_image_url?: string | null
+          idea_title: string
+          user_id: string
+        }
+        Update: {
+          book_title?: string
+          created_at?: string | null
+          id?: string
+          idea_explanation?: string
+          idea_image_url?: string | null
+          idea_title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       subscriptions: {
         Row: {
           created_at: string | null
@@ -43,6 +205,57 @@ export type Database = {
           plan_type?: string
           start_date?: string
           status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_ideas: {
+        Row: {
+          created_at: string | null
+          id: string
+          idea_content: string
+          idea_title: string
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          idea_content: string
+          idea_title: string
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          idea_content?: string
+          idea_title?: string
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_preferences: {
+        Row: {
+          created_at: string | null
+          id: string
+          preferred_topics: string[] | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          preferred_topics?: string[] | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          preferred_topics?: string[] | null
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []
