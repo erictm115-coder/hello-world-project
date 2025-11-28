@@ -15,7 +15,7 @@ const ListenOrRead = () => {
 
       <div className="fixed bottom-0 left-0 right-0 px-6 pb-12 pt-4 bg-background">
         <Button
-          onClick={() => navigate("/growth-plan")}
+          onClick={() => navigate("/onboarding/best-badge")}
           className="w-full bg-primary hover:bg-primary/90 text-white rounded-full h-12 text-base font-semibold"
         >
           Continue

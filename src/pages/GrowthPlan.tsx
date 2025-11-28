@@ -1712,9 +1712,9 @@ const GrowthPlan = () => {
               description: "Your account has been created successfully.",
             });
 
-            // Move to deepkeep app
+            // Redirect to onboarding flow
             setTimeout(() => {
-              window.location.href = "/app/home";
+              window.location.href = "/onboarding/books-vs-micro";
             }, 2000);
 
           } catch (error: any) {
