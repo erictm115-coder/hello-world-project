@@ -1142,12 +1142,27 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6">
-              <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
-                Enter your email to create your personal account and track your progress
-              </h2>
-              <p className="text-sm text-muted-foreground text-center leading-snug">
-                We'll never spam you or share your email
-              </p>
+              {!answers.emailFocused ? (
+                <>
+                  <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
+                    Enter your email to create your personal account and track your progress
+                  </h2>
+                  <p className="text-sm text-muted-foreground text-center leading-snug flex items-center justify-center gap-2">
+                    <Lock className="w-3 h-3" />
+                    We'll never spam you or share your email
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
+                    Enter your email to create personal account
+                  </h2>
+                  <p className="text-sm text-muted-foreground text-center leading-snug flex items-center justify-center gap-2">
+                    <Lock className="w-3 h-3" />
+                    We'll never spam you or share your email
+                  </p>
+                </>
+              )}
               <div className="space-y-3">
                 <Input
                   type="email"
@@ -1155,14 +1170,17 @@ const GrowthPlan = () => {
                   className="h-12 text-base"
                   value={answers.email || ""}
                   onChange={(e) => handleAnswerWithFeedback("email", e.target.value)}
+                  onFocus={() => handleAnswerWithFeedback("emailFocused", true)}
                 />
               </div>
             </div>
-            {answers.email && answers.email.includes("@") && (
-              <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in">
-                Continue
-              </Button>
-            )}
+            <Button
+              onClick={() => setStep(step + 1)}
+              className="w-full h-12 mt-2"
+              disabled={!answers.email || !answers.email.includes("@")}
+            >
+              Continue
+            </Button>
           </div>
         );
 
