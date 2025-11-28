@@ -1338,7 +1338,7 @@ const GrowthPlan = () => {
       case 36:
         const CarouselItem36 = ({ email, insights, minutes }: { email: string; insights: number; minutes: number }) => {
           return (
-            <div className="bg-white rounded-lg p-3 shadow-sm border border-border flex-shrink-0 w-full">
+            <div className="bg-white rounded-lg p-3 shadow-sm border border-border w-full">
               <p className="text-sm font-medium text-foreground">{email}</p>
               <p className="text-xs text-muted-foreground">
                 {insights} insights, {minutes} minutes
@@ -1370,16 +1370,21 @@ const GrowthPlan = () => {
               <img src={becomeInteresting} alt="Become the most interesting person in the room" className="w-full max-w-[600px] h-auto rounded-lg" />
             </div>
 
-            {/* Scrolling Testimonial Carousel */}
+            {/* Subtitle */}
+            <p className="text-sm font-semibold text-foreground text-center px-2">
+              102 people learned self-growth insights in the last hour
+            </p>
+
+            {/* Scrolling Testimonial Carousel - One at a time */}
             <div className="space-y-2 py-4">
               <h3 className="text-sm font-semibold text-foreground px-2">People growing now:</h3>
               <div className="relative overflow-hidden">
                 <div
-                  className="flex gap-3 transition-transform duration-300 ease-out"
-                  style={{ transform: `translateX(-${carouselIndex * (100 / 3)}%)` }}
+                  className="flex transition-transform duration-300 ease-out"
+                  style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
                 >
                   {testimonials36.map((testimonial, idx) => (
-                    <div key={idx} className="min-w-[calc(33.333%-8px)]">
+                    <div key={idx} className="w-full flex-shrink-0 px-2">
                       <CarouselItem36
                         email={testimonial.email}
                         insights={testimonial.insights}
@@ -1388,24 +1393,6 @@ const GrowthPlan = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Benefits List */}
-            <div className="space-y-3 px-2 py-4">
-              <h3 className="text-sm font-semibold text-foreground">In the past month, users have achieved:</h3>
-              <div className="space-y-2">
-                {[
-                  { icon: "🔥", text: "40% boost in productivity" },
-                  { icon: "🧠", text: "3X more knowledge retention" },
-                  { icon: "⏰", text: "2 hours daily saved from scrolling" },
-                  { icon: "💡", text: "15+ new actionable insights per week" },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <span className="text-xl">{item.icon}</span>
-                    <p className="text-sm text-foreground">{item.text}</p>
-                  </div>
-                ))}
               </div>
             </div>
 
