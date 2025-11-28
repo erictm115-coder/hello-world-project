@@ -38,7 +38,7 @@ const GrowthPlan = () => {
 
   // Carousel auto-scroll effect
   useEffect(() => {
-    if (step === 35) {
+    if (step === 36) {
       const interval = setInterval(() => {
         setCarouselIndex((prev) => (prev + 1) % 8);
       }, 3000);
@@ -1129,15 +1129,21 @@ const GrowthPlan = () => {
           </div>
         );
 
-      case 35:
+      case 33:
+        if (!answers.loadingComplete) {
+          return <LoadingPage onComplete={() => handleAnswerWithFeedback("loadingComplete", true)} />;
+        }
+        return null;
+
+      case 34:
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6">
               <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
-                Enter your email to save your personalized growth plan
+                Enter your email to create your personal account and track your progress
               </h2>
               <p className="text-sm text-muted-foreground text-center leading-snug">
-                We'll send you your plan and daily insights to help you achieve your goals.
+                We'll never spam you or share your email
               </p>
               <div className="space-y-3">
                 <Input
@@ -1149,7 +1155,7 @@ const GrowthPlan = () => {
                 />
               </div>
             </div>
-            {answers.email && answers.email.includes('@') && (
+            {answers.email && answers.email.includes("@") && (
               <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in">
                 Continue
               </Button>
@@ -1157,107 +1163,7 @@ const GrowthPlan = () => {
           </div>
         );
 
-      case 34:
-        if (!answers.loadingComplete) {
-          return <LoadingPage onComplete={() => handleAnswerWithFeedback("loadingComplete", true)} />;
-        }
-        return null;
-
-      case 33:
-        const CarouselItem = ({ email, insights, minutes }: { email: string; insights: number; minutes: number }) => {
-          return (
-            <div className="bg-white rounded-lg p-3 shadow-sm border border-border flex-shrink-0 w-full">
-              <p className="text-sm font-medium text-foreground">{email}</p>
-              <p className="text-xs text-muted-foreground">
-                {insights} insights, {minutes} minutes
-              </p>
-            </div>
-          );
-        };
-
-        const testimonials = [
-          { email: "so*********@gmail.com", insights: 4, minutes: 4 },
-          { email: "ge*********@gmail.com", insights: 5, minutes: 3 },
-          { email: "ma*********@gmail.com", insights: 7, minutes: 6 },
-          { email: "al*********@gmail.com", insights: 3, minutes: 2 },
-          { email: "je*********@gmail.com", insights: 6, minutes: 5 },
-          { email: "ra*********@gmail.com", insights: 4, minutes: 3 },
-          { email: "ch*********@gmail.com", insights: 8, minutes: 7 },
-          { email: "em*********@gmail.com", insights: 5, minutes: 4 },
-        ];
-
-        return (
-          <div key={step} className="space-y-4 pb-12 animate-fade-in bg-background -mx-4 px-4 py-6">
-            {/* Logo at very top */}
-            <div className="flex justify-center pt-4 pb-2">
-              <img src={deepkeepLogo} alt="Deepkeep" className="h-10 w-auto" />
-            </div>
-
-            {/* Image */}
-            <div className="flex justify-center px-4">
-              <img src={growthComparison} alt="Growth Comparison" className="w-full max-w-[500px] h-auto" />
-            </div>
-
-            {/* Main Title */}
-            <div className="text-center space-y-2 px-2">
-              <h2 className="text-3xl font-bold text-foreground leading-tight">
-                Outsmart doomscrolling: <br />
-                <span style={{ color: "#2dbe89" }}>It doesn't stand a chance</span>
-              </h2>
-              <p className="text-sm text-muted-foreground leading-snug">
-                Become part of the community that escaped doomscrolling. Grow daily and achieve your goals with us.
-              </p>
-            </div>
-
-            {/* Scrolling Testimonial Carousel */}
-            <div className="space-y-2 py-4">
-              <h3 className="text-sm font-semibold text-foreground px-2">People growing now:</h3>
-              <div className="relative overflow-hidden">
-                <div
-                  className="flex gap-3 transition-transform duration-300 ease-out"
-                  style={{ transform: `translateX(-${carouselIndex * (100 / 3)}%)` }}
-                >
-                  {testimonials.map((testimonial, idx) => (
-                    <div key={idx} className="min-w-[calc(33.333%-8px)]">
-                      <CarouselItem
-                        email={testimonial.email}
-                        insights={testimonial.insights}
-                        minutes={testimonial.minutes}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Benefits List */}
-            <div className="space-y-3 px-2 py-4">
-              <h3 className="text-sm font-semibold text-foreground">In the past month, users have achieved:</h3>
-              <div className="space-y-2">
-                {[
-                  { icon: "🔥", text: "40% boost in productivity" },
-                  { icon: "🧠", text: "3X more knowledge retention" },
-                  { icon: "⏰", text: "2 hours daily saved from scrolling" },
-                  { icon: "💡", text: "15+ new actionable insights per week" },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <span className="text-xl">{item.icon}</span>
-                    <p className="text-sm text-foreground">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <div className="px-2">
-              <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
-                Continue
-              </Button>
-            </div>
-          </div>
-        );
-
-      case 36:
+      case 35:
         return (
           <div key={step} className="space-y-8 pb-12 animate-fade-in bg-background -mx-4 px-4 py-6">
             {/* Logo */}
@@ -1274,7 +1180,6 @@ const GrowthPlan = () => {
                 </h1>
                 <p className="text-sm text-muted-foreground">Based on your answers, we crafted a self-growth plan</p>
               </div>
-
               {/* Growth Curve Visualization with Copybook Background */}
               <div
                 className="relative py-8 px-4 bg-white rounded-xl"
@@ -1401,6 +1306,99 @@ const GrowthPlan = () => {
               </div>
 
               {/* CTA Button */}
+              <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+                Continue
+              </Button>
+            </div>
+          </div>
+        );
+
+      case 36:
+        const CarouselItem = ({ email, insights, minutes }: { email: string; insights: number; minutes: number }) => {
+          return (
+            <div className="bg-white rounded-lg p-3 shadow-sm border border-border flex-shrink-0 w-full">
+              <p className="text-sm font-medium text-foreground">{email}</p>
+              <p className="text-xs text-muted-foreground">
+                {insights} insights, {minutes} minutes
+              </p>
+            </div>
+          );
+        };
+
+        const testimonials = [
+          { email: "so*********@gmail.com", insights: 4, minutes: 4 },
+          { email: "ge*********@gmail.com", insights: 5, minutes: 3 },
+          { email: "ma*********@gmail.com", insights: 7, minutes: 6 },
+          { email: "al*********@gmail.com", insights: 3, minutes: 2 },
+          { email: "je*********@gmail.com", insights: 6, minutes: 5 },
+          { email: "ra*********@gmail.com", insights: 4, minutes: 3 },
+          { email: "ch*********@gmail.com", insights: 8, minutes: 7 },
+          { email: "em*********@gmail.com", insights: 5, minutes: 4 },
+        ];
+
+        return (
+          <div key={step} className="space-y-4 pb-12 animate-fade-in bg-background -mx-4 px-4 py-6">
+            {/* Logo at very top */}
+            <div className="flex justify-center pt-4 pb-2">
+              <img src={deepkeepLogo} alt="Deepkeep" className="h-10 w-auto" />
+            </div>
+
+            {/* Image */}
+            <div className="flex justify-center px-4">
+              <img src={growthComparison} alt="Growth Comparison" className="w-full max-w-[500px] h-auto" />
+            </div>
+
+            {/* Main Title */}
+            <div className="text-center space-y-2 px-2">
+              <h2 className="text-3xl font-bold text-foreground leading-tight">
+                Become the most interesting person in the room
+              </h2>
+              <p className="text-sm text-muted-foreground leading-snug">
+                Based on your answers, we crafted a self-growth plan
+              </p>
+            </div>
+
+            {/* Scrolling Testimonial Carousel */}
+            <div className="space-y-2 py-4">
+              <h3 className="text-sm font-semibold text-foreground px-2">People growing now:</h3>
+              <div className="relative overflow-hidden">
+                <div
+                  className="flex gap-3 transition-transform duration-300 ease-out"
+                  style={{ transform: `translateX(-${carouselIndex * (100 / 3)}%)` }}
+                >
+                  {testimonials.map((testimonial, idx) => (
+                    <div key={idx} className="min-w-[calc(33.333%-8px)]">
+                      <CarouselItem
+                        email={testimonial.email}
+                        insights={testimonial.insights}
+                        minutes={testimonial.minutes}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Benefits List */}
+            <div className="space-y-3 px-2 py-4">
+              <h3 className="text-sm font-semibold text-foreground">In the past month, users have achieved:</h3>
+              <div className="space-y-2">
+                {[
+                  { icon: "🔥", text: "40% boost in productivity" },
+                  { icon: "🧠", text: "3X more knowledge retention" },
+                  { icon: "⏰", text: "2 hours daily saved from scrolling" },
+                  { icon: "💡", text: "15+ new actionable insights per week" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <span className="text-xl">{item.icon}</span>
+                    <p className="text-sm text-foreground">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="px-2">
               <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
                 Continue
               </Button>
@@ -1661,7 +1659,7 @@ const GrowthPlan = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Fixed Header */}
-      {step !== 34 && step !== 35 && step !== 36 && (
+      {step !== 33 && step !== 35 && step !== 36 && (
         <div className="fixed top-0 left-0 right-0 bg-background z-10 border-b border-border">
           <div className="w-full max-w-[600px] mx-auto px-4 pt-4 pb-3 space-y-3">
             {/* Back Button & Logo */}
@@ -1703,7 +1701,7 @@ const GrowthPlan = () => {
       )}
 
       {/* Content with top padding to account for fixed header */}
-      <div className={step === 34 || step === 35 || step === 36 || step === 38 ? "px-4 pb-6" : "pt-[140px] px-4 pb-6"}>
+      <div className={step === 33 || step === 35 || step === 36 || step === 38 ? "px-4 pb-6" : "pt-[140px] px-4 pb-6"}>
         <div className="w-full max-w-[600px] mx-auto">{renderStep()}</div>
       </div>
     </div>
