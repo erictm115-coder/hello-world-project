@@ -1374,7 +1374,7 @@ const GrowthPlan = () => {
             <div className="mx-2 border border-gray-300 rounded-lg p-3 space-y-2">
               {/* Subtitle */}
               <p className="text-sm font-semibold text-foreground text-center">
-                102 people learned self-growth insights in the last hour
+                1102 people learned self-growth insights in the last hour
               </p>
 
               {/* Scrolling Testimonial Carousel - One at a time */}
