@@ -34,11 +34,11 @@ const GrowthPlan = () => {
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [carouselIndex, setCarouselIndex] = useState(0);
 
-  const totalSteps = 37;
+  const totalSteps = 38;
 
   // Carousel auto-scroll effect
   useEffect(() => {
-    if (step === 33) {
+    if (step === 35) {
       const interval = setInterval(() => {
         setCarouselIndex((prev) => (prev + 1) % 8);
       }, 3000);
@@ -1129,6 +1129,40 @@ const GrowthPlan = () => {
           </div>
         );
 
+      case 35:
+        return (
+          <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
+            <div className="flex-1 flex flex-col justify-center space-y-6">
+              <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
+                Enter your email to save your personalized growth plan
+              </h2>
+              <p className="text-sm text-muted-foreground text-center leading-snug">
+                We'll send you your plan and daily insights to help you achieve your goals.
+              </p>
+              <div className="space-y-3">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="h-12 text-base"
+                  value={answers.email || ""}
+                  onChange={(e) => handleAnswerWithFeedback("email", e.target.value)}
+                />
+              </div>
+            </div>
+            {answers.email && answers.email.includes('@') && (
+              <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in">
+                Continue
+              </Button>
+            )}
+          </div>
+        );
+
+      case 34:
+        if (!answers.loadingComplete) {
+          return <LoadingPage onComplete={() => handleAnswerWithFeedback("loadingComplete", true)} />;
+        }
+        return null;
+
       case 33:
         const CarouselItem = ({ email, insights, minutes }: { email: string; insights: number; minutes: number }) => {
           return (
@@ -1223,13 +1257,7 @@ const GrowthPlan = () => {
           </div>
         );
 
-      case 34:
-        if (!answers.loadingComplete) {
-          return <LoadingPage onComplete={() => handleAnswerWithFeedback("loadingComplete", true)} />;
-        }
-        return null;
-
-      case 35:
+      case 36:
         return (
           <div key={step} className="space-y-8 pb-12 animate-fade-in bg-background -mx-4 px-4 py-6">
             {/* Logo */}
@@ -1380,7 +1408,7 @@ const GrowthPlan = () => {
           </div>
         );
 
-      case 36:
+      case 37:
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6">
@@ -1419,7 +1447,7 @@ const GrowthPlan = () => {
           </div>
         );
 
-      case 37:
+      case 38:
         return (
           <div key={step} className="space-y-6 animate-fade-in pb-8">
             {/* Header */}
@@ -1633,7 +1661,7 @@ const GrowthPlan = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Fixed Header */}
-      {step !== 33 && step !== 34 && step !== 35 && (
+      {step !== 34 && step !== 35 && step !== 36 && (
         <div className="fixed top-0 left-0 right-0 bg-background z-10 border-b border-border">
           <div className="w-full max-w-[600px] mx-auto px-4 pt-4 pb-3 space-y-3">
             {/* Back Button & Logo */}
@@ -1675,7 +1703,7 @@ const GrowthPlan = () => {
       )}
 
       {/* Content with top padding to account for fixed header */}
-      <div className={step === 33 || step === 34 || step === 35 || step === 37 ? "px-4 pb-6" : "pt-[140px] px-4 pb-6"}>
+      <div className={step === 34 || step === 35 || step === 36 || step === 38 ? "px-4 pb-6" : "pt-[140px] px-4 pb-6"}>
         <div className="w-full max-w-[600px] mx-auto">{renderStep()}</div>
       </div>
     </div>
