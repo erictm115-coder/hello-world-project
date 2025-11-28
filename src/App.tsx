@@ -3,61 +3,30 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { OnboardingProvider } from "./contexts/OnboardingContext";
-import { AuthProvider } from "./contexts/AuthContext";
-import { AppLayout } from "./components/AppLayout";
 import Index from "./pages/Index";
 import GrowthPlan from "./pages/GrowthPlan";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute";
-import SubscriptionRequired from "./pages/SubscriptionRequired";
-import BooksVsMicro from "./pages/onboarding/BooksVsMicro";
-import ListenOrRead from "./pages/onboarding/ListenOrRead";
-import BestBadge from "./pages/onboarding/BestBadge";
-import AuthFinal from "./pages/onboarding/AuthFinal";
-import Home from "./pages/Home";
-import Explore from "./pages/Explore";
-import Library from "./pages/Library";
-import Create from "./pages/Create";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <OnboardingProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              {/* Landing & Marketing */}
-              <Route path="/" element={<Index />} />
-              <Route path="/growth-plan" element={<GrowthPlan />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/privacy" element={<Privacy />} />
-              
-              {/* Onboarding */}
-              <Route path="/onboarding/books-vs-micro" element={<BooksVsMicro />} />
-              <Route path="/onboarding/listen-or-read" element={<ListenOrRead />} />
-              <Route path="/onboarding/best-badge" element={<BestBadge />} />
-              <Route path="/onboarding/auth-final" element={<AuthFinal />} />
-              
-              {/* Protected App Routes */}
-              <Route path="/app/home" element={<ProtectedRoute><AppLayout><Home /></AppLayout></ProtectedRoute>} />
-              <Route path="/explore" element={<ProtectedRoute><AppLayout><Explore /></AppLayout></ProtectedRoute>} />
-              <Route path="/library" element={<ProtectedRoute><AppLayout><Library /></AppLayout></ProtectedRoute>} />
-              <Route path="/create" element={<ProtectedRoute><AppLayout><Create /></AppLayout></ProtectedRoute>} />
-              
-              <Route path="/subscription-required" element={<SubscriptionRequired />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </OnboardingProvider>
-    </AuthProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/growth-plan" element={<GrowthPlan />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 
