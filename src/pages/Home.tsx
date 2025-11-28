@@ -17,22 +17,25 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import deepkeepIcon from "@/assets/deepkeep-logo-icon.png";
-import atomicHabitsImg from "@/assets/atomic-habits-new.jpg";
+import atomicHabitsImg from "@/assets/atomic-habits-book.png";
 import deepWorkImg from "@/assets/deep-work-book.png";
-import psychologyMoneyImg from "@/assets/psychology-money-new.jpg";
-import cantHurtMeImg from "@/assets/cant-hurt-new.jpg";
-import richDadImg from "@/assets/rich-dad-new.jpg";
-import subtleArtImg from "@/assets/subtle-art-new.jpg";
-import mindsetImg from "@/assets/mindset-new.jpg";
-import meditationsImg from "@/assets/meditations-new.jpg";
-import briefHistoryImg from "@/assets/brief-history-new.jpg";
-import thinkGrowRichImg from "@/assets/think-grow-rich.jpg";
-import hubermanLabImg from "@/assets/huberman-lab-new.jpg";
-import timFerrissImg from "@/assets/tim-ferriss-podcast.jpg";
-import hiddenBrainImg from "@/assets/hidden-brain-podcast.jpg";
-import howIBuiltThisImg from "@/assets/how-i-built-this-podcast.jpg";
-import tonyRobbinsImg from "@/assets/tony-robbins-podcast.jpg";
-import onPurposeImg from "@/assets/on-purpose-podcast.jpg";
+import psychologyMoneyImg from "@/assets/psychology-of-money-book.png";
+import winFriendsImg from "@/assets/win-friends-book.png";
+import worklifePodcastImg from "@/assets/worklife-podcast.png";
+// Using placeholders for missing images - these can be generated later
+const cantHurtMeImg = atomicHabitsImg;
+const richDadImg = psychologyMoneyImg;
+const subtleArtImg = winFriendsImg;
+const mindsetImg = atomicHabitsImg;
+const meditationsImg = deepWorkImg;
+const briefHistoryImg = psychologyMoneyImg;
+const thinkGrowRichImg = winFriendsImg;
+const hubermanLabImg = worklifePodcastImg;
+const timFerrissImg = worklifePodcastImg;
+const hiddenBrainImg = worklifePodcastImg;
+const howIBuiltThisImg = worklifePodcastImg;
+const tonyRobbinsImg = worklifePodcastImg;
+const onPurposeImg = worklifePodcastImg;
 
 interface Book {
   id: string;
