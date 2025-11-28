@@ -1131,7 +1131,10 @@ const GrowthPlan = () => {
 
       case 33:
         if (!answers.loadingComplete) {
-          return <LoadingPage onComplete={() => handleAnswerWithFeedback("loadingComplete", true)} />;
+          return <LoadingPage onComplete={() => {
+            handleAnswerWithFeedback("loadingComplete", true);
+            setTimeout(() => setStep(step + 1), 100);
+          }} />;
         }
         return null;
 
