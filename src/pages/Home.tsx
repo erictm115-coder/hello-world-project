@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import deepkeepIcon from "@/assets/deepkeep-logo-icon.png";
 import atomicHabitsImg from "@/assets/atomic-habits-new.jpg";
-import deepWorkImg from "@/assets/deep-work-new.jpg";
+import deepWorkImg from "@/assets/deep-work-book.png";
 import psychologyMoneyImg from "@/assets/psychology-money-new.jpg";
 import cantHurtMeImg from "@/assets/cant-hurt-new.jpg";
 import richDadImg from "@/assets/rich-dad-new.jpg";
