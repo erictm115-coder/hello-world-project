@@ -8,6 +8,11 @@ import GrowthPlan from "./pages/GrowthPlan";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
+import Dashboard from "./pages/app/Dashboard";
+import Profile from "./pages/app/Profile";
+import Settings from "./pages/app/Settings";
+import Library from "./pages/app/Library";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +27,11 @@ const App = () => (
           <Route path="/growth-plan" element={<GrowthPlan />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/app/dashboard" element={<Dashboard />} />
+          <Route path="/app/profile" element={<Profile />} />
+          <Route path="/app/settings" element={<Settings />} />
+          <Route path="/app/library" element={<Library />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
