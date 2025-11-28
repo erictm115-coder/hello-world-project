@@ -1712,9 +1712,9 @@ const GrowthPlan = () => {
               description: "Your account has been created successfully.",
             });
 
-            // Move to a success screen or redirect
+            // Move to deepkeep app
             setTimeout(() => {
-              window.location.href = "/"; // Redirect to home or app
+              window.location.href = "/app/home";
             }, 2000);
 
           } catch (error: any) {
