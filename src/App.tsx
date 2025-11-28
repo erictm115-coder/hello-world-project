@@ -17,6 +17,10 @@ import BooksVsMicro from "./pages/onboarding/BooksVsMicro";
 import ListenOrRead from "./pages/onboarding/ListenOrRead";
 import BestBadge from "./pages/onboarding/BestBadge";
 import AuthFinal from "./pages/onboarding/AuthFinal";
+import Home from "./pages/Home";
+import Explore from "./pages/Explore";
+import Library from "./pages/Library";
+import Create from "./pages/Create";
 
 const queryClient = new QueryClient();
 
@@ -41,8 +45,11 @@ const App = () => (
               <Route path="/onboarding/best-badge" element={<BestBadge />} />
               <Route path="/onboarding/auth-final" element={<AuthFinal />} />
               
-              {/* Protected App Routes - placeholder for now */}
-              <Route path="/app/home" element={<ProtectedRoute><AppLayout><div className="p-8">Home Page - Coming Soon</div></AppLayout></ProtectedRoute>} />
+              {/* Protected App Routes */}
+              <Route path="/app/home" element={<ProtectedRoute><AppLayout><Home /></AppLayout></ProtectedRoute>} />
+              <Route path="/explore" element={<ProtectedRoute><AppLayout><Explore /></AppLayout></ProtectedRoute>} />
+              <Route path="/library" element={<ProtectedRoute><AppLayout><Library /></AppLayout></ProtectedRoute>} />
+              <Route path="/create" element={<ProtectedRoute><AppLayout><Create /></AppLayout></ProtectedRoute>} />
               
               <Route path="/subscription-required" element={<SubscriptionRequired />} />
               <Route path="*" element={<NotFound />} />
