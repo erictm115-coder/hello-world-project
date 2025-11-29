@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import deepkeepLogo from "@/assets/deepkeep-logo.png";
 import welcomeIllustration from "@/assets/welcome-illustration.png";
 import bigPictureIllustration from "@/assets/big-picture-illustration.png";
@@ -31,6 +33,10 @@ import { useToast } from "@/hooks/use-toast";
 import worldMap from "@/assets/world-map.png";
 import growthComparison from "@/assets/growth-comparison.png";
 import LoadingPage from "@/components/LoadingPage";
+import { PaymentForm } from "@/components/PaymentForm";
+
+// Initialize Stripe with publishable key
+const stripePromise = loadStripe("pk_live_51SVB2EDf5HdJBV7ZAF2YsCKTyRGO9njWehy7Zju21lXhH878ocOwWPTYTlmFEs0qZ1ueugGVEnalIduk0Zk53fiN00KLJeGTh3");
 
 const GrowthPlan = () => {
   // Check URL params for step from Stripe redirect
@@ -42,6 +48,7 @@ const GrowthPlan = () => {
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
   const { toast } = useToast();
 
   // Load email from URL if redirected from Stripe
@@ -1695,28 +1702,32 @@ const GrowthPlan = () => {
                 </div>
               </div>
 
-              {/* Card Input Field */}
-              {answers.paymentMethod === "card" && (
-                <div className="relative animate-fade-in">
-                  <Input
-                    placeholder="Enter your card details"
-                    className="h-12 pr-10"
-                    value={answers.cardDetails || ""}
-                    onChange={(e) => handleAnswerWithFeedback("cardDetails", e.target.value)}
-                  />
-                  <CreditCard className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              {/* Embedded Payment Form */}
+              {answers.paymentMethod === "card" && clientSecret && (
+                <div className="animate-fade-in">
+                  <Elements stripe={stripePromise} options={{ clientSecret }}>
+                    <PaymentForm 
+                      onSuccess={() => setStep(39)}
+                      onCancel={() => {
+                        setClientSecret(null);
+                        setIsProcessing(false);
+                      }}
+                    />
+                  </Elements>
                 </div>
               )}
             </div>
 
-            {/* Continue Button */}
-            <Button
-              onClick={handleStripeCheckout}
-              className="w-full h-12 mt-6"
-              disabled={!answers.plan || isProcessing}
-            >
-              {isProcessing ? "Processing..." : "Continue to Payment"}
-            </Button>
+            {/* Continue Button - shown only when payment form is not displayed */}
+            {!clientSecret && (
+              <Button
+                onClick={handleStripeCheckout}
+                className="w-full h-12 mt-6"
+                disabled={!answers.plan || !answers.paymentMethod || isProcessing}
+              >
+                {isProcessing ? "Loading payment form..." : "Continue to Payment"}
+              </Button>
+            )}
           </div>
         );
 
