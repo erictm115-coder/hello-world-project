@@ -26,14 +26,35 @@ import platformLogos from "@/assets/platform-logos.png";
 import becomeInteresting from "@/assets/become-interesting.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import worldMap from "@/assets/world-map.png";
 import growthComparison from "@/assets/growth-comparison.png";
 import LoadingPage from "@/components/LoadingPage";
 
 const GrowthPlan = () => {
-  const [step, setStep] = useState(1);
+  // Check URL params for step from Stripe redirect
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlStep = urlParams.get('step');
+  const initialStep = urlStep ? parseInt(urlStep) : 1;
+  
+  const [step, setStep] = useState(initialStep);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const { toast } = useToast();
+
+  // Load email from URL if redirected from Stripe
+  useEffect(() => {
+    const sessionId = urlParams.get('session_id');
+    if (sessionId && initialStep === 39) {
+      // Email should be stored in localStorage or retrieved from Stripe session
+      const storedEmail = localStorage.getItem('deepkeep_email');
+      if (storedEmail) {
+        setAnswers(prev => ({ ...prev, email: storedEmail }));
+      }
+    }
+  }, []);
 
   const totalSteps = 37;
 
@@ -84,6 +105,94 @@ const GrowthPlan = () => {
 
   const handleAnswerWithFeedback = (questionKey: string, value: any) => {
     setAnswers({ ...answers, [questionKey]: value });
+  };
+
+  const handleStripeCheckout = async () => {
+    if (!answers.plan || !answers.email) {
+      toast({
+        title: "Missing information",
+        description: "Please select a plan and enter your email",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Store email in localStorage for later retrieval
+    localStorage.setItem('deepkeep_email', answers.email);
+
+    setIsProcessing(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: {
+          planType: answers.plan,
+          email: answers.email,
+        },
+      });
+
+      if (error) throw error;
+
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+      toast({
+        title: "Error",
+        description: "Failed to create checkout session. Please try again.",
+        variant: "destructive",
+      });
+      setIsProcessing(false);
+    }
+  };
+
+  const handlePasswordCreation = async () => {
+    if (!answers.password || answers.password.length < 6) {
+      toast({
+        title: "Invalid password",
+        description: "Password must be at least 6 characters",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsProcessing(true);
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: answers.email,
+        password: answers.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/`,
+        },
+      });
+
+      if (error) throw error;
+
+      if (data.user) {
+        // Update subscription with user_id
+        await supabase
+          .from('subscriptions')
+          .update({ user_id: data.user.id })
+          .eq('email', answers.email)
+          .eq('user_id', '00000000-0000-0000-0000-000000000000');
+
+        toast({
+          title: "Account created!",
+          description: "Welcome to Deepkeep. Redirecting...",
+        });
+
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+      }
+    } catch (error: any) {
+      console.error('Error creating account:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to create account. Please try again.",
+        variant: "destructive",
+      });
+      setIsProcessing(false);
+    }
   };
 
   const renderStep = () => {
@@ -1602,11 +1711,44 @@ const GrowthPlan = () => {
 
             {/* Continue Button */}
             <Button
-              onClick={() => handleAnswer("checkout", "complete")}
+              onClick={handleStripeCheckout}
               className="w-full h-12 mt-6"
-              disabled={!answers.plan || !answers.paymentMethod}
+              disabled={!answers.plan || isProcessing}
             >
-              Continue
+              {isProcessing ? "Processing..." : "Continue to Payment"}
+            </Button>
+          </div>
+        );
+
+      case 39:
+        return (
+          <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
+            <div className="flex-1 flex flex-col justify-center space-y-6">
+              <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
+                Create your password
+              </h2>
+              <p className="text-sm text-muted-foreground text-center leading-snug">
+                Set a secure password to access your account
+              </p>
+              <div className="space-y-3">
+                <Input
+                  type="password"
+                  placeholder="Enter your password"
+                  className="h-12 text-base"
+                  value={answers.password || ""}
+                  onChange={(e) => handleAnswerWithFeedback("password", e.target.value)}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Password must be at least 6 characters
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={handlePasswordCreation}
+              className="w-full h-12 mt-2"
+              disabled={!answers.password || answers.password.length < 6 || isProcessing}
+            >
+              {isProcessing ? "Creating account..." : "Create Account"}
             </Button>
           </div>
         );
@@ -1618,8 +1760,28 @@ const GrowthPlan = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Fixed Header */}
-      {step !== 33 && step !== 36 && (
+      {/* Logo-only Header for steps 38 and 39 */}
+      {(step === 38 || step === 39) && (
+        <div className="fixed top-0 left-0 right-0 bg-background z-10 border-b border-border">
+          <div className="w-full max-w-[600px] mx-auto px-4 pt-4 pb-3">
+            <div className="flex items-center justify-between">
+              <Button
+                onClick={() => setStep(step === 39 ? 38 : 36)}
+                variant="ghost"
+                size="icon"
+                className="text-muted-foreground"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+              <img src={deepkeepLogo} alt="deepkeep" className="h-10 w-auto" />
+              <div className="w-10" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Fixed Header with Progress */}
+      {step !== 33 && step !== 34 && step !== 35 && step !== 36 && step !== 38 && step !== 39 && (
         <div className="fixed top-0 left-0 right-0 bg-background z-10 border-b border-border">
           <div className="w-full max-w-[600px] mx-auto px-4 pt-4 pb-3 space-y-3">
             {/* Back Button & Logo */}
@@ -1661,7 +1823,13 @@ const GrowthPlan = () => {
       )}
 
       {/* Content with top padding to account for fixed header */}
-      <div className={step === 33 || step === 36 || step === 37 ? "px-4 pb-6" : "pt-[140px] px-4 pb-6"}>
+      <div className={
+        step === 33 || step === 34 || step === 35 || step === 36 || step === 37 
+          ? "px-4 pb-6" 
+          : step === 38 || step === 39
+          ? "pt-[80px] px-4 pb-6"
+          : "pt-[140px] px-4 pb-6"
+      }>
         <div className="w-full max-w-[600px] mx-auto">{renderStep()}</div>
       </div>
     </div>
