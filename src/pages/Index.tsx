@@ -43,24 +43,14 @@ const Index = () => {
           </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="space-y-3">
-          <Button
-            asChild
-            className="w-full h-12 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-            size="lg"
-          >
-            <Link to="/growth-plan">Continue</Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="w-full h-12 text-lg font-bold rounded-xl"
-            size="lg"
-          >
-            <Link to="/auth">Sign In / Sign Up</Link>
-          </Button>
-        </div>
+        {/* CTA Button */}
+        <Button
+          asChild
+          className="w-full h-12 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+          size="lg"
+        >
+          <Link to="/growth-plan">Continue</Link>
+        </Button>
 
         {/* Footer Links */}
         <div className="text-center text-xs text-muted-foreground mt-2">
