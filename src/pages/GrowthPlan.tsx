@@ -182,13 +182,19 @@ const GrowthPlan = () => {
           .eq('email', answers.email)
           .eq('user_id', '00000000-0000-0000-0000-000000000000');
 
+        // Get the session token to pass to the app
+        const { data: { session } } = await supabase.auth.getSession();
+        
         toast({
           title: "Account created!",
           description: "Welcome to Deepkeep. Redirecting...",
         });
 
         setTimeout(() => {
-          window.location.href = 'https://app.deepkeep.app';
+          // Pass the token and email to app.deepkeep.app for automatic login
+          const token = session?.access_token || '';
+          const email = answers.email;
+          window.location.href = `https://app.deepkeep.app?token=${token}&email=${email}`;
         }, 2000);
       }
     } catch (error: any) {
