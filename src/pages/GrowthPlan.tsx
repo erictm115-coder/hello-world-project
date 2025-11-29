@@ -188,7 +188,7 @@ const GrowthPlan = () => {
         });
 
         setTimeout(() => {
-          window.location.href = '/';
+          window.location.href = 'https://app.deepkeep.app';
         }, 2000);
       }
     } catch (error: any) {
