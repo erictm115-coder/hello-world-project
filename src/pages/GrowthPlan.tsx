@@ -36,7 +36,7 @@ import LoadingPage from "@/components/LoadingPage";
 import { PaymentForm } from "@/components/PaymentForm";
 
 // Initialize Stripe with publishable key
-const stripePromise = loadStripe("pk_live_51SVB2EDf5HdJBV7ZAF2YsCKTyRGO9njWehy7Zju21lXhH878ocOwWPTYTlmFEs0qZ1ueugGVEnalIduk0Zk53fiN00KLJeGTh3");
+const stripePromise = loadStripe("pk_test_51SVB2EDf5HdJBV7ZJm9WKt7bR4v2aCsScHfvZV6l15ZZ9gteJICFE7tUWmS1nBRAbhNt63YZ7fggWmrkNNoImsS000selbvXlx");
 
 const GrowthPlan = () => {
   // Check URL params for step from Stripe redirect
