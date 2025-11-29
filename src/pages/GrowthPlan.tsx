@@ -115,7 +115,10 @@ const GrowthPlan = () => {
   };
 
   const handleStripeCheckout = async () => {
+    console.log('handleStripeCheckout called', { plan: answers.plan, email: answers.email });
+    
     if (!answers.plan || !answers.email) {
+      console.log('Missing plan or email');
       toast({
         title: "Missing information",
         description: "Please select a plan and enter your email",
@@ -128,6 +131,8 @@ const GrowthPlan = () => {
     localStorage.setItem('deepkeep_email', answers.email);
 
     setIsProcessing(true);
+    console.log('Calling create-checkout with:', { planType: answers.plan, email: answers.email });
+    
     try {
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: {
@@ -136,10 +141,21 @@ const GrowthPlan = () => {
         },
       });
 
+      console.log('create-checkout response:', { data, error });
+
       if (error) throw error;
 
       if (data.url) {
+        console.log('Redirecting to:', data.url);
         window.location.href = data.url;
+      } else {
+        console.error('No URL returned from checkout session');
+        toast({
+          title: "Error",
+          description: "No checkout URL received. Please try again.",
+          variant: "destructive",
+        });
+        setIsProcessing(false);
       }
     } catch (error) {
       console.error('Error creating checkout session:', error);
