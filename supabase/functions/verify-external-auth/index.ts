@@ -12,12 +12,68 @@ serve(async (req) => {
   }
 
   try {
-    const { token } = await req.json();
+    const { token, email } = await req.json();
+    const apiKey = req.headers.get('x-api-key');
+    const expectedApiKey = Deno.env.get('EXTERNAL_API_KEY');
 
-    if (!token) {
-      console.error("No token provided");
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+    );
+
+    let userId: string | null = null;
+    let userEmail: string | null = null;
+
+    // Method 1: Token-based authentication (for same-project access)
+    if (token) {
+      console.log("Verifying token...");
+      const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+
+      if (authError || !user) {
+        console.error("Auth verification failed:", authError);
+        return new Response(
+          JSON.stringify({ 
+            valid: false, 
+            error: "Invalid or expired token" 
+          }),
+          { 
+            status: 401,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          }
+        );
+      }
+
+      console.log("Token verified for user:", user.id);
+      userId = user.id;
+      userEmail = user.email ?? null;
+    }
+    // Method 2: Email-based authentication (for cross-project access)
+    else if (email) {
+      console.log("Verifying email with API key...");
+      
+      // Verify API key
+      if (!apiKey || apiKey !== expectedApiKey) {
+        console.error("Invalid or missing API key");
+        return new Response(
+          JSON.stringify({ 
+            valid: false, 
+            error: "Invalid or missing API key" 
+          }),
+          { 
+            status: 401,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          }
+        );
+      }
+
+      console.log("API key verified, checking email:", email);
+      userEmail = email;
+    }
+    // Neither token nor email provided
+    else {
+      console.error("No token or email provided");
       return new Response(
-        JSON.stringify({ error: "Token is required" }),
+        JSON.stringify({ error: "Token or email is required" }),
         { 
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -25,51 +81,37 @@ serve(async (req) => {
       );
     }
 
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-    );
-
-    // Verify the token by getting the user
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-
-    if (authError || !user) {
-      console.error("Auth verification failed:", authError);
-      return new Response(
-        JSON.stringify({ 
-          valid: false, 
-          error: "Invalid or expired token" 
-        }),
-        { 
-          status: 401,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    console.log("Token verified for user:", user.id);
-
-    // Check if user has active subscription
-    const { data: subscription, error: subError } = await supabase
+    // Check if user has active subscription (by user_id OR email)
+    let query = supabase
       .from('subscriptions')
       .select('*')
-      .eq('user_id', user.id)
       .eq('status', 'active')
-      .gte('end_date', new Date().toISOString())
-      .single();
+      .gte('end_date', new Date().toISOString());
 
-    if (subError && subError.code !== 'PGRST116') {
+    // Add filter based on what we have
+    if (userId) {
+      query = query.or(`user_id.eq.${userId},email.eq.${userEmail}`);
+    } else {
+      query = query.eq('email', userEmail);
+    }
+
+    const { data: subscriptions, error: subError } = await query;
+
+    if (subError) {
       console.error("Error checking subscription:", subError);
     }
+
+    const subscription = subscriptions && subscriptions.length > 0 ? subscriptions[0] : null;
+
+    console.log("Subscription found:", subscription ? 'Yes' : 'No');
 
     return new Response(
       JSON.stringify({
         valid: true,
-        user: {
-          id: user.id,
-          email: user.email,
-          created_at: user.created_at,
-        },
+        user: userId ? {
+          id: userId,
+          email: userEmail,
+        } : null,
         subscription: subscription ? {
           plan_type: subscription.plan_type,
           status: subscription.status,
