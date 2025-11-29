@@ -42,6 +42,7 @@ serve(async (req) => {
 
     console.log('Webhook event received:', event.type);
 
+    // Handle checkout.session.completed
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object as Stripe.Checkout.Session;
       const metadata = session.metadata;
@@ -93,6 +94,64 @@ serve(async (req) => {
       }
 
       console.log('Subscription created:', data);
+
+      return new Response(
+        JSON.stringify({ received: true, subscription: data }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Handle payment_intent.succeeded for embedded payments
+    if (event.type === 'payment_intent.succeeded') {
+      const paymentIntent = event.data.object as Stripe.PaymentIntent;
+      const metadata = paymentIntent.metadata;
+      
+      if (!metadata) {
+        throw new Error('No metadata found in payment intent');
+      }
+
+      const { plan_type, email } = metadata;
+      
+      console.log('Processing successful payment:', { plan_type, email });
+
+      // Calculate end date based on plan type
+      const now = new Date();
+      let endDate = new Date(now);
+      
+      switch (plan_type) {
+        case '1month':
+          endDate.setMonth(endDate.getMonth() + 1);
+          break;
+        case '3months':
+          endDate.setMonth(endDate.getMonth() + 3);
+          break;
+        case '1year':
+          endDate.setFullYear(endDate.getFullYear() + 1);
+          break;
+        default:
+          throw new Error('Invalid plan type');
+      }
+
+      // Store subscription in database
+      const { data, error } = await supabase
+        .from('subscriptions')
+        .insert({
+          email: email,
+          plan_type: plan_type,
+          start_date: now.toISOString(),
+          end_date: endDate.toISOString(),
+          status: 'active',
+          user_id: '00000000-0000-0000-0000-000000000000', // Temporary placeholder
+        })
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error inserting subscription:', error);
+        throw error;
+      }
+
+      console.log('Subscription created from payment intent:', data);
 
       return new Response(
         JSON.stringify({ received: true, subscription: data }),
