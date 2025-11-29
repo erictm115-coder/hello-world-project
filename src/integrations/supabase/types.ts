@@ -185,7 +185,7 @@ export type Database = {
           plan_type: string
           start_date: string
           status: string
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string | null
@@ -195,7 +195,7 @@ export type Database = {
           plan_type: string
           start_date?: string
           status?: string
-          user_id: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string | null
@@ -205,7 +205,7 @@ export type Database = {
           plan_type?: string
           start_date?: string
           status?: string
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: []
       }

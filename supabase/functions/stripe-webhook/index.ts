@@ -82,8 +82,8 @@ serve(async (req) => {
           throw new Error('Invalid plan type');
       }
 
-      // Store subscription in database (without user_id for now)
-      // We'll update it with user_id after the user creates their account
+      // Store subscription in database without user_id
+      // User will link their subscription after creating an account
       const { data, error } = await supabase
         .from('subscriptions')
         .insert({
@@ -92,7 +92,7 @@ serve(async (req) => {
           start_date: now.toISOString(),
           end_date: endDate.toISOString(),
           status: 'active',
-          user_id: '00000000-0000-0000-0000-000000000000', // Temporary placeholder
+          user_id: null,
         })
         .select()
         .single();
@@ -115,8 +115,13 @@ serve(async (req) => {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
       const metadata = paymentIntent.metadata;
       
-      if (!metadata) {
-        throw new Error('No metadata found in payment intent');
+      // Skip if no metadata (checkout.session.completed already handled it)
+      if (!metadata || !metadata.plan_type || !metadata.email) {
+        console.log('Skipping payment_intent.succeeded - no metadata or already processed by checkout.session.completed');
+        return new Response(
+          JSON.stringify({ received: true, skipped: 'no_metadata' }),
+          { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
       }
 
       const { plan_type, email } = metadata;
@@ -141,7 +146,7 @@ serve(async (req) => {
           throw new Error('Invalid plan type');
       }
 
-      // Store subscription in database
+      // Store subscription in database without user_id
       const { data, error } = await supabase
         .from('subscriptions')
         .insert({
@@ -150,7 +155,7 @@ serve(async (req) => {
           start_date: now.toISOString(),
           end_date: endDate.toISOString(),
           status: 'active',
-          user_id: '00000000-0000-0000-0000-000000000000', // Temporary placeholder
+          user_id: null,
         })
         .select()
         .single();
