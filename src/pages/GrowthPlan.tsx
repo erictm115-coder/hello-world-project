@@ -1428,7 +1428,7 @@ const GrowthPlan = () => {
               <div className="flex items-start gap-3">
                 <div className="text-3xl flex-shrink-0">🏆</div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-foreground mb-2">30-day Money-Back Guarantee</h3>
+                  <h3 className="text-lg font-bold text-foreground">30-day Money-Back Guarantee</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     We believe that our lessons will make a difference for you. However, if you don't see the value of Deepkeep after completing different lessons, books and quotes, we'll be ready to refund your money.
                   </p>
