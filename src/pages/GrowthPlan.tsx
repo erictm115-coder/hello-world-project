@@ -49,20 +49,9 @@ const GrowthPlan = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
-  const [tempPassword, setTempPassword] = useState<string>("");
   const [syncComplete, setSyncComplete] = useState(false);
   const [stripeCustomerId, setStripeCustomerId] = useState<string | null>(null);
   const { toast } = useToast();
-
-  // Generate secure temporary password
-  const generateTempPassword = () => {
-    const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%';
-    let password = '';
-    for (let i = 0; i < 12; i++) {
-      password += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return password;
-  };
 
   // Load email and customer ID from Stripe session if redirected
   useEffect(() => {
@@ -224,10 +213,6 @@ const GrowthPlan = () => {
 
     setIsProcessing(true);
     try {
-      // Generate temporary password for main app
-      const generatedTempPassword = generateTempPassword();
-      setTempPassword(generatedTempPassword);
-
       const { data, error } = await supabase.auth.signUp({
         email: answers.email,
         password: answers.password,
@@ -246,19 +231,12 @@ const GrowthPlan = () => {
           .eq('email', answers.email)
           .eq('user_id', '00000000-0000-0000-0000-000000000000');
 
-        // Get stripe customer ID if available
-        const { data: subscription } = await supabase
-          .from('subscriptions')
-          .select('id')
-          .eq('email', answers.email)
-          .single();
-
-        // Sync user to main app with Stripe customer ID from checkout session
+        // Sync user to main app with their chosen password and Stripe customer ID
         console.log('Syncing user to main app...', { customerId: stripeCustomerId });
         const { data: syncData, error: syncError } = await supabase.functions.invoke('sync-user-to-app', {
           body: {
             email: answers.email,
-            tempPassword: generatedTempPassword,
+            tempPassword: answers.password,
             stripeCustomerId: stripeCustomerId || null,
           },
         });
@@ -1867,7 +1845,7 @@ const GrowthPlan = () => {
               </h2>
               <div className="space-y-4">
                 <p className="text-sm text-center text-muted-foreground">
-                  Login at <span className="font-semibold text-foreground">app.deepkeep.app</span> with your email and this temporary password:
+                  Login at <span className="font-semibold text-foreground">app.deepkeep.app</span> with these credentials:
                 </p>
                 
                 <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-xl border-2 border-primary/20 space-y-4">
@@ -1876,20 +1854,14 @@ const GrowthPlan = () => {
                     <p className="font-medium text-base">{answers.email}</p>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Your Temporary Password</label>
+                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Your Password</label>
                     <div className="bg-background p-4 rounded-md border-2 border-primary/30">
                       <p className="font-mono text-2xl font-bold text-primary tracking-wide select-all break-all cursor-pointer">
-                        {tempPassword}
+                        {answers.password}
                       </p>
                     </div>
                     <p className="text-xs text-muted-foreground italic">Click the password to select and copy it</p>
                   </div>
-                </div>
-
-                <div className="bg-yellow-500/10 border border-yellow-500/30 p-4 rounded-lg">
-                  <p className="text-xs text-yellow-900 dark:text-yellow-100 text-center">
-                    ⚠️ <span className="font-semibold">Important:</span> Please change this password after your first login for security.
-                  </p>
                 </div>
               </div>
             </div>
