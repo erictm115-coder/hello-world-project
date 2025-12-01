@@ -33,6 +33,7 @@ import featureScanBooks from "@/assets/feature-scan-books.png";
 import featureListenLearn from "@/assets/feature-listen-learn.png";
 import featureReadingHabit from "@/assets/feature-reading-habit.png";
 import reviewAvatars from "@/assets/review-avatars.png";
+import reviewAvatarSingle from "@/assets/review-avatar-single.png";
 import { Check, ArrowLeft, X, Lock, CreditCard, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -1504,10 +1505,9 @@ const GrowthPlan = () => {
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
                       <img 
-                        src={reviewAvatars} 
+                        src={reviewAvatarSingle} 
                         alt="christopher bowne" 
                         className="w-full h-full object-cover"
-                        style={{ objectPosition: '0% 0%' }}
                       />
                     </div>
                     <p className="text-xs text-muted-foreground font-medium">christopher bowne</p>
