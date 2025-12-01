@@ -1683,7 +1683,7 @@ const GrowthPlan = () => {
               <img 
                 src={blackFridayBanner} 
                 alt="Black Friday Sale" 
-                className="w-full max-w-[500px] h-auto rounded-lg"
+                className="w-full max-w-[550px] h-auto rounded-lg"
               />
             </div>
 
