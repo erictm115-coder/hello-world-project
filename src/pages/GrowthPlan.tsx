@@ -784,7 +784,7 @@ const GrowthPlan = () => {
               Does this book seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={atomicHabitsBook} alt="Atomic Habits book cover" className={`w-full max-w-[200px] h-auto ${getImageClass(atomicHabitsBook)}`} onLoad={() => handleImageLoad(atomicHabitsBook)} />
+              <img src={atomicHabitsBook} alt="Atomic Habits book cover" className={`w-full max-w-[160px] h-auto ${getImageClass(atomicHabitsBook)}`} onLoad={() => handleImageLoad(atomicHabitsBook)} />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               An easy & proven way to build good habits & break bad ones. Helps build tiny changes into remarkable results.
@@ -806,7 +806,7 @@ const GrowthPlan = () => {
               Does this book seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={winFriendsBook} alt="How to Win Friends and Influence People book cover" className={`w-full max-w-[200px] h-auto ${getImageClass(winFriendsBook)}`} onLoad={() => handleImageLoad(winFriendsBook)} />
+              <img src={winFriendsBook} alt="How to Win Friends and Influence People book cover" className={`w-full max-w-[160px] h-auto ${getImageClass(winFriendsBook)}`} onLoad={() => handleImageLoad(winFriendsBook)} />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               Provides practical techniques to win people over, handle conflicts, and inspire cooperation.
@@ -828,7 +828,7 @@ const GrowthPlan = () => {
               Does this book seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={deepWorkBook} alt="Deep Work book cover" className={`w-full max-w-[200px] h-auto ${getImageClass(deepWorkBook)}`} onLoad={() => handleImageLoad(deepWorkBook)} />
+              <img src={deepWorkBook} alt="Deep Work book cover" className={`w-full max-w-[160px] h-auto ${getImageClass(deepWorkBook)}`} onLoad={() => handleImageLoad(deepWorkBook)} />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               The book guides readers on how to cultivate deep work habits and minimize the impact of shallow work.
@@ -850,7 +850,7 @@ const GrowthPlan = () => {
               Does this book seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={psychologyOfMoneyBook} alt="The Psychology of Money book cover" className={`w-full max-w-[200px] h-auto ${getImageClass(psychologyOfMoneyBook)}`} onLoad={() => handleImageLoad(psychologyOfMoneyBook)} />
+              <img src={psychologyOfMoneyBook} alt="The Psychology of Money book cover" className={`w-full max-w-[160px] h-auto ${getImageClass(psychologyOfMoneyBook)}`} onLoad={() => handleImageLoad(psychologyOfMoneyBook)} />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               A collection of short stories exploring the strange ways people think about money and teaches you how to
