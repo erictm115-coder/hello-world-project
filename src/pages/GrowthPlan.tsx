@@ -98,6 +98,11 @@ const GrowthPlan = () => {
 
   const totalSteps = 37;
 
+  // Scroll to top when step changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step]);
+
   // Carousel auto-scroll effect
   useEffect(() => {
     if (step === 36) {
@@ -137,9 +142,15 @@ const GrowthPlan = () => {
     const content = document.querySelector(".fade-content");
     if (content) {
       content.classList.add("animate-fade-out");
-      setTimeout(() => setStep(step + 1), 200);
+      setTimeout(() => {
+        setStep(step + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 200);
     } else {
-      setTimeout(() => setStep(step + 1), 300);
+      setTimeout(() => {
+        setStep(step + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 300);
     }
   };
 
@@ -263,11 +274,6 @@ const GrowthPlan = () => {
           console.log('Sync successful:', syncData);
           setSyncComplete(true);
         }
-
-        toast({
-          title: "Account created!",
-          description: "Your account has been synced to the main app.",
-        });
 
         // Move to next step to show credentials
         setStep(40);
