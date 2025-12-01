@@ -1322,7 +1322,7 @@ const GrowthPlan = () => {
       case 38:
         return <div key={step} className="space-y-6 animate-fade-in pb-8">
             {/* Black Friday Banner with Countdown */}
-            <div className="flex justify-center px-2 relative">
+            <div className="flex justify-center -mx-4 relative">
               <img src={blackFridayBanner} alt="Black Friday Sale" className="w-full h-auto rounded-xl shadow-none" />
               <div className="absolute text-white px-0.5 py-0.5 rounded-sm shadow-lg border-primary bg-[#061912] border" style={{
               bottom: '6px',
