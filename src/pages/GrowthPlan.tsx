@@ -1306,10 +1306,7 @@ const GrowthPlan = () => {
             {/* Black Friday Banner with Countdown */}
             <div className="flex justify-center px-2 relative">
               <img src={blackFridayBanner} alt="Black Friday Sale" className="w-full h-auto rounded-lg" />
-              <div className="absolute text-white px-0.5 py-0.5 rounded-sm shadow-lg border-primary bg-[#061912] border" style={{
-              bottom: '6px',
-              right: '32px'
-            }}>
+              <div className="absolute text-white px-0.5 py-0.5 rounded-sm shadow-lg border-primary bg-[#061912] border" style={{ bottom: '6px', right: '32px' }}>
                 <div className="text-[10px] font-bold tabular-nums leading-none">
                   {formatCountdown(countdown)}
                 </div>
@@ -1426,12 +1423,13 @@ const GrowthPlan = () => {
               We've automatically applied a discount to your subscription price
             </p>
 
-            <div className="py-4 pr-4 pl-6 bg-muted/50 rounded-lg border border-border">
-              <div className="flex flex-col items-start gap-1">
-                
+            {/* Money-Back Guarantee */}
+            <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
+              <div className="flex items-start gap-3">
+                <div className="text-3xl flex-shrink-0">🏆</div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-foreground mb-0 text-center mx-0 mr-px">🏆30-day Money-Back Guarantee</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mt-0">
+                  <h3 className="text-lg font-bold text-foreground mb-2">30-day Money-Back Guarantee</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     We believe that our lessons will make a difference for you. However, if you don't see the value of Deepkeep after completing different lessons, books and quotes, we'll be ready to refund your money.
                   </p>
                 </div>
@@ -1439,7 +1437,7 @@ const GrowthPlan = () => {
             </div>
 
             {/* Stripe Payment Badges */}
-            <div className="mt-6 flex justify-end pr-[67px]">
+            <div className="mt-6 flex justify-start pl-4">
               <img src={stripePaymentBadges} alt="Powered by Stripe" className="w-full max-w-[200px] h-auto" />
             </div>
           </div>;
