@@ -1678,21 +1678,19 @@ const GrowthPlan = () => {
       case 38:
         return (
           <div key={step} className="space-y-6 animate-fade-in pb-8">
-            {/* Header */}
-            <div className="bg-muted/30 -mx-4 px-4 py-4">
-              <h2 className="text-xl font-bold text-foreground text-center">
-                Choose your plan
-              </h2>
-            </div>
-
             {/* Black Friday Banner */}
-            <div className="flex justify-center px-4 -mb-2">
+            <div className="flex justify-center -mx-4">
               <img 
                 src={blackFridayBanner} 
                 alt="Black Friday Sale" 
-                className="w-full max-w-[600px] h-auto rounded-lg"
+                className="w-full h-auto"
               />
             </div>
+
+            {/* Header */}
+            <h2 className="text-xl font-bold text-foreground text-center">
+              Choose your plan
+            </h2>
 
             {/* Pricing Options */}
             <div className="space-y-3">
