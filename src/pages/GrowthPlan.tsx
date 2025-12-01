@@ -57,7 +57,7 @@ const GrowthPlan = () => {
   const generateTempPassword = () => {
     const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%';
     let password = '';
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 12; i++) {
       password += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return password;
@@ -1836,37 +1836,42 @@ const GrowthPlan = () => {
                 />
               </div>
               <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
-                Your account is ready!
+                🎉 Your Account is Ready!
               </h2>
-              <div className="space-y-4 bg-primary/10 p-6 rounded-xl">
-                <p className="text-sm text-foreground font-semibold text-center">
-                  Login credentials for Main App:
+              <div className="space-y-4">
+                <p className="text-sm text-center text-muted-foreground">
+                  Login at <span className="font-semibold text-foreground">app.deepkeep.app</span> with your email and this temporary password:
                 </p>
-                <div className="space-y-3">
-                  <div className="bg-background p-4 rounded-lg">
-                    <p className="text-xs text-muted-foreground mb-1">Email</p>
-                    <p className="text-sm font-mono break-all">{answers.email}</p>
+                
+                <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-6 rounded-xl border-2 border-primary/20 space-y-4">
+                  <div className="space-y-2">
+                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Your Email</label>
+                    <p className="font-medium text-base">{answers.email}</p>
                   </div>
-                  <div className="bg-background p-4 rounded-lg">
-                    <p className="text-xs text-muted-foreground mb-1">Temporary Password</p>
-                    <p className="text-sm font-mono break-all">{tempPassword}</p>
+                  <div className="space-y-2">
+                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Your Temporary Password</label>
+                    <div className="bg-background p-4 rounded-md border-2 border-primary/30">
+                      <p className="font-mono text-2xl font-bold text-primary tracking-wide select-all break-all cursor-pointer">
+                        {tempPassword}
+                      </p>
+                    </div>
+                    <p className="text-xs text-muted-foreground italic">Click the password to select and copy it</p>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground text-center mt-4">
-                  ⚠️ Please change your password after logging in for the first time
-                </p>
-              </div>
-              <div className="bg-muted/50 p-4 rounded-lg">
-                <p className="text-sm text-muted-foreground text-center">
-                  Login at: <span className="font-semibold text-foreground">https://app.deepkeep.app</span>
-                </p>
+
+                <div className="bg-yellow-500/10 border border-yellow-500/30 p-4 rounded-lg">
+                  <p className="text-xs text-yellow-900 dark:text-yellow-100 text-center">
+                    ⚠️ <span className="font-semibold">Important:</span> Please change this password after your first login for security.
+                  </p>
+                </div>
               </div>
             </div>
             <Button
-              onClick={() => window.location.href = 'https://app.deepkeep.app'}
+              onClick={() => window.location.href = 'https://app.deepkeep.app/auth'}
               className="w-full h-12 mt-2"
+              size="lg"
             >
-              Go to Main App
+              Login to DeepKeep →
             </Button>
           </div>
         );
