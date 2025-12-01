@@ -1679,11 +1679,11 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="space-y-6 animate-fade-in pb-8">
             {/* Black Friday Banner */}
-            <div className="flex justify-center -mx-4">
+            <div className="flex justify-center px-2">
               <img 
                 src={blackFridayBanner} 
                 alt="Black Friday Sale" 
-                className="w-full h-auto"
+                className="w-full max-w-[500px] h-auto rounded-lg"
               />
             </div>
 
