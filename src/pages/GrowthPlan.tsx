@@ -27,6 +27,7 @@ import celebrationIllustration from "@/assets/celebration-illustration.png";
 import platformLogos from "@/assets/platform-logos.png";
 import becomeInteresting from "@/assets/become-interesting.png";
 import blackFridayBanner from "@/assets/black-friday-banner-new.png";
+import stripePaymentBadges from "@/assets/stripe-payment-badges.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -1429,10 +1430,15 @@ const GrowthPlan = () => {
                 <div className="flex-1">
                   <h3 className="text-lg font-bold text-foreground mb-2">30-day Money-Back Guarantee</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    We believe that our lessons will make a difference for you. However, if you don't see the value of Deepkeep after completing different lessons, books and quotes, we'll be ready to refund your money. Find more details in our <span className="text-destructive underline cursor-pointer">money-back policy</span>.
+                    We believe that our lessons will make a difference for you. However, if you don't see the value of Deepkeep after completing different lessons, books and quotes, we'll be ready to refund your money.
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Stripe Payment Badges */}
+            <div className="mt-6 flex justify-center">
+              <img src={stripePaymentBadges} alt="Powered by Stripe" className="w-full max-w-md h-auto" />
             </div>
           </div>;
       case 39:
