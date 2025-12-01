@@ -35,6 +35,22 @@ import growthComparison from "@/assets/growth-comparison.png";
 import LoadingPage from "@/components/LoadingPage";
 import { PaymentForm } from "@/components/PaymentForm";
 
+// Preload critical images for first steps
+const preloadImages = [
+  deepkeepLogo,
+  welcomeIllustration,
+  bigPictureIllustration,
+  mistakesIllustration
+];
+
+preloadImages.forEach(src => {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = src;
+  document.head.appendChild(link);
+});
+
 // Initialize Stripe with publishable key
 const stripePromise = loadStripe("pk_test_51SVB2EDf5HdJBV7ZJm9WKt7bR4v2aCsScHfvZV6l15ZZ9gteJICFE7tUWmS1nBRAbhNt63YZ7fggWmrkNNoImsS000selbvXlx");
 
@@ -308,7 +324,7 @@ const GrowthPlan = () => {
                   src={welcomeIllustration}
                   alt="Welcome illustration"
                   className={`w-full max-w-[350px] h-auto ${getImageClass(welcomeIllustration)}`}
-                  loading="eager"
+                  fetchPriority="high"
                   onLoad={() => handleImageLoad(welcomeIllustration)}
                 />
               </div>
@@ -357,7 +373,7 @@ const GrowthPlan = () => {
                   src={bigPictureIllustration}
                   alt="Big picture thinking illustration"
                   className={`w-full max-w-[450px] h-auto ${getImageClass(bigPictureIllustration)}`}
-                  loading="eager"
+                  fetchPriority="high"
                   onLoad={() => handleImageLoad(bigPictureIllustration)}
                 />
               </div>
@@ -471,7 +487,7 @@ const GrowthPlan = () => {
                   src={mistakesIllustration}
                   alt="Mistakes illustration"
                   className={`w-full max-w-[350px] h-auto ${getImageClass(mistakesIllustration)}`}
-                  loading="eager"
+                  fetchPriority="high"
                   onLoad={() => handleImageLoad(mistakesIllustration)}
                 />
               </div>
@@ -584,7 +600,7 @@ const GrowthPlan = () => {
                   src={decisivenessIllustration}
                   alt="Decisiveness illustration"
                   className={`w-full max-w-[350px] h-auto ${getImageClass(decisivenessIllustration)}`}
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => handleImageLoad(decisivenessIllustration)}
                 />
               </div>
@@ -608,7 +624,7 @@ const GrowthPlan = () => {
                   src={honestIllustration}
                   alt="Thanks for being honest illustration"
                   className={`w-full max-w-[350px] h-auto ${getImageClass(honestIllustration)}`}
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => handleImageLoad(honestIllustration)}
                 />
               </div>
@@ -665,7 +681,7 @@ const GrowthPlan = () => {
                   src={extrovertIllustration}
                   alt="Cheers to the extrovert squad illustration"
                   className={`w-full max-w-[280px] h-auto ${getImageClass(extrovertIllustration)}`}
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => handleImageLoad(extrovertIllustration)}
                 />
               </div>
@@ -770,7 +786,7 @@ const GrowthPlan = () => {
                   src={motivatorIllustration}
                   alt="A friendly push motivator illustration"
                   className={`w-full max-w-[280px] h-auto ${getImageClass(motivatorIllustration)}`}
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => handleImageLoad(motivatorIllustration)}
                 />
               </div>
@@ -876,7 +892,7 @@ const GrowthPlan = () => {
                   src={honestIllustration}
                   alt="Boundaries illustration"
                   className={`w-full max-w-[400px] h-auto ${getImageClass(honestIllustration)}`}
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => handleImageLoad(honestIllustration)}
                 />
               </div>
@@ -946,7 +962,7 @@ const GrowthPlan = () => {
                   src={amazingCloudsIllustration}
                   alt="You're amazing illustration"
                   className={`w-full max-w-[400px] h-auto ${getImageClass(amazingCloudsIllustration)}`}
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => handleImageLoad(amazingCloudsIllustration)}
                 />
               </div>
@@ -1234,7 +1250,7 @@ const GrowthPlan = () => {
                   src={celebrationIllustration}
                   alt="Celebration"
                   className={`w-full max-w-[300px] h-auto ${getImageClass(celebrationIllustration)}`}
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => handleImageLoad(celebrationIllustration)}
                 />
               </div>
@@ -1259,7 +1275,7 @@ const GrowthPlan = () => {
                   src={worldMap} 
                   alt="World map" 
                   className={`w-full max-w-[500px] h-auto ${getImageClass(worldMap)}`}
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => handleImageLoad(worldMap)}
                 />
               </div>
