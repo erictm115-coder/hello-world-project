@@ -140,7 +140,7 @@ const LoadingPage = ({ onComplete }: LoadingPageProps) => {
 
       {/* Reviews section at bottom - only show when not complete */}
       {step < 4 && (
-        <div className="mt-auto space-y-4 pb-8 pt-12">
+        <div className="mt-auto space-y-4 pb-8 pt-8">
           <p className="text-center text-lg font-bold text-foreground">
             Loved by over 10M people worldwide
           </p>
