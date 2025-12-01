@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.verify-external-auth]
 verify_jwt = false
+
+[functions.sync-user-to-app]
+verify_jwt = false
