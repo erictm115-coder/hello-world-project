@@ -26,7 +26,7 @@ import simonSinekAuthor from "@/assets/simon-sinek-author.png";
 import celebrationIllustration from "@/assets/celebration-illustration.png";
 import platformLogos from "@/assets/platform-logos.png";
 import becomeInteresting from "@/assets/become-interesting.png";
-import blackFridayBanner from "@/assets/black-friday-banner.png";
+import blackFridayBanner from "@/assets/black-friday-banner-new.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
