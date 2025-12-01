@@ -1424,7 +1424,7 @@ const GrowthPlan = () => {
             </p>
 
             {/* Money-Back Guarantee */}
-            <div className="p-4 bg-muted/50 rounded-lg border border-border">
+            <div className="py-4 pr-4 bg-muted/50 rounded-lg border border-border">
               <div className="flex items-start gap-1">
                 <div className="text-3xl flex-shrink-0">🏆</div>
                 <div className="flex-1">
