@@ -29,6 +29,7 @@ import becomeInteresting from "@/assets/become-interesting.png";
 import blackFridayBanner from "@/assets/black-friday-banner-new.png";
 import stripePaymentBadges from "@/assets/stripe-payment-badges.png";
 import appShowcase from "@/assets/app-showcase.png";
+import scanBooksFeature from "@/assets/scan-books-feature.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -58,6 +59,7 @@ const GrowthPlan = () => {
   const [step, setStep] = useState(initialStep);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [appShowcaseIndex, setAppShowcaseIndex] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [syncComplete, setSyncComplete] = useState(false);
@@ -127,6 +129,16 @@ const GrowthPlan = () => {
       const interval = setInterval(() => {
         setCarouselIndex(prev => (prev + 1) % 8);
       }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [step]);
+
+  // App showcase carousel auto-scroll effect
+  useEffect(() => {
+    if (step === 38) {
+      const interval = setInterval(() => {
+        setAppShowcaseIndex(prev => (prev + 1) % 2);
+      }, 4000);
       return () => clearInterval(interval);
     }
   }, [step]);
@@ -1445,9 +1457,34 @@ const GrowthPlan = () => {
               <img src={stripePaymentBadges} alt="Powered by Stripe" className="w-full max-w-[200px] h-auto" />
             </div>
 
-            {/* App Showcase */}
+            {/* App Showcase Carousel */}
             <div className="mt-8 flex justify-center">
-              <img src={appShowcase} alt="App showcase" className="w-full max-w-md h-auto" />
+              <div className="relative overflow-hidden w-full max-w-md">
+                <div className="flex transition-transform duration-500 ease-out" style={{
+                  transform: `translateX(-${appShowcaseIndex * 100}%)`
+                }}>
+                  <div className="w-full flex-shrink-0 flex justify-center">
+                    <img src={appShowcase} alt="Quick microlearning insights" className="w-full h-auto" />
+                  </div>
+                  <div className="w-full flex-shrink-0 flex justify-center">
+                    <img src={scanBooksFeature} alt="Scan books, get key ideas" className="w-full h-auto" />
+                  </div>
+                </div>
+                
+                {/* Carousel Indicators */}
+                <div className="flex justify-center gap-2 mt-4">
+                  {[0, 1].map((idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setAppShowcaseIndex(idx)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        appShowcaseIndex === idx ? 'bg-primary' : 'bg-muted'
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>;
       case 39:
