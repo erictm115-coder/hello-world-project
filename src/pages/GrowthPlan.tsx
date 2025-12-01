@@ -51,7 +51,16 @@ const GrowthPlan = () => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [syncComplete, setSyncComplete] = useState(false);
   const [stripeCustomerId, setStripeCustomerId] = useState<string | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const { toast } = useToast();
+
+  const handleImageLoad = (imageSrc: string) => {
+    setLoadedImages(prev => new Set(prev).add(imageSrc));
+  };
+
+  const getImageClass = (imageSrc: string) => {
+    return loadedImages.has(imageSrc) ? 'img-loaded' : 'img-loading';
+  };
 
   // Load email and customer ID from Stripe session if redirected
   useEffect(() => {
@@ -298,8 +307,9 @@ const GrowthPlan = () => {
                 <img
                   src={welcomeIllustration}
                   alt="Welcome illustration"
-                  className="w-full max-w-[350px] h-auto"
+                  className={`w-full max-w-[350px] h-auto ${getImageClass(welcomeIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(welcomeIllustration)}
                 />
               </div>
               <h2 className="text-3xl font-bold text-foreground animate-fade-in-delay-1">Welcome!</h2>
@@ -346,8 +356,9 @@ const GrowthPlan = () => {
                 <img
                   src={bigPictureIllustration}
                   alt="Big picture thinking illustration"
-                  className="w-full max-w-[450px] h-auto"
+                  className={`w-full max-w-[450px] h-auto ${getImageClass(bigPictureIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(bigPictureIllustration)}
                 />
               </div>
               <p className="text-lg font-bold text-foreground leading-snug animate-fade-in-delay-1">
@@ -459,8 +470,9 @@ const GrowthPlan = () => {
                 <img
                   src={mistakesIllustration}
                   alt="Mistakes illustration"
-                  className="w-full max-w-[350px] h-auto"
+                  className={`w-full max-w-[350px] h-auto ${getImageClass(mistakesIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(mistakesIllustration)}
                 />
               </div>
               <p className="text-base font-bold text-foreground leading-snug animate-fade-in-delay-1">
@@ -571,8 +583,9 @@ const GrowthPlan = () => {
                 <img
                   src={decisivenessIllustration}
                   alt="Decisiveness illustration"
-                  className="w-full max-w-[350px] h-auto"
+                  className={`w-full max-w-[350px] h-auto ${getImageClass(decisivenessIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(decisivenessIllustration)}
                 />
               </div>
               <h2 className="text-3xl font-bold text-foreground animate-fade-in-delay-1">Way to go!</h2>
@@ -594,8 +607,9 @@ const GrowthPlan = () => {
                 <img
                   src={honestIllustration}
                   alt="Thanks for being honest illustration"
-                  className="w-full max-w-[350px] h-auto"
+                  className={`w-full max-w-[350px] h-auto ${getImageClass(honestIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(honestIllustration)}
                 />
               </div>
               <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">Thanks for being honest!</h2>
@@ -650,8 +664,9 @@ const GrowthPlan = () => {
                 <img
                   src={extrovertIllustration}
                   alt="Cheers to the extrovert squad illustration"
-                  className="w-full max-w-[280px] h-auto"
+                  className={`w-full max-w-[280px] h-auto ${getImageClass(extrovertIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(extrovertIllustration)}
                 />
               </div>
               <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">Cheers to the extrovert squad!</h2>
@@ -754,8 +769,9 @@ const GrowthPlan = () => {
                 <img
                   src={motivatorIllustration}
                   alt="A friendly push motivator illustration"
-                  className="w-full max-w-[280px] h-auto"
+                  className={`w-full max-w-[280px] h-auto ${getImageClass(motivatorIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(motivatorIllustration)}
                 />
               </div>
               <p className="text-base font-bold text-foreground leading-snug animate-fade-in-delay-1">
@@ -859,8 +875,9 @@ const GrowthPlan = () => {
                 <img
                   src={honestIllustration}
                   alt="Boundaries illustration"
-                  className="w-full max-w-[400px] h-auto"
+                  className={`w-full max-w-[400px] h-auto ${getImageClass(honestIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(honestIllustration)}
                 />
               </div>
               {answers.boundaries && (
@@ -928,8 +945,9 @@ const GrowthPlan = () => {
                 <img
                   src={amazingCloudsIllustration}
                   alt="You're amazing illustration"
-                  className="w-full max-w-[400px] h-auto"
+                  className={`w-full max-w-[400px] h-auto ${getImageClass(amazingCloudsIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(amazingCloudsIllustration)}
                 />
               </div>
               <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">You're amazing!</h2>
@@ -951,7 +969,12 @@ const GrowthPlan = () => {
               Does this book seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={atomicHabitsBook} alt="Atomic Habits book cover" className="w-full max-w-[200px] h-auto" />
+              <img 
+                src={atomicHabitsBook} 
+                alt="Atomic Habits book cover" 
+                className={`w-full max-w-[200px] h-auto ${getImageClass(atomicHabitsBook)}`}
+                onLoad={() => handleImageLoad(atomicHabitsBook)}
+              />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               An easy & proven way to build good habits & break bad ones. Helps build tiny changes into remarkable results.
@@ -986,7 +1009,8 @@ const GrowthPlan = () => {
               <img
                 src={winFriendsBook}
                 alt="How to Win Friends and Influence People book cover"
-                className="w-full max-w-[200px] h-auto"
+                className={`w-full max-w-[200px] h-auto ${getImageClass(winFriendsBook)}`}
+                onLoad={() => handleImageLoad(winFriendsBook)}
               />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
@@ -1019,7 +1043,12 @@ const GrowthPlan = () => {
               Does this book seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={deepWorkBook} alt="Deep Work book cover" className="w-full max-w-[200px] h-auto" />
+              <img 
+                src={deepWorkBook} 
+                alt="Deep Work book cover" 
+                className={`w-full max-w-[200px] h-auto ${getImageClass(deepWorkBook)}`}
+                onLoad={() => handleImageLoad(deepWorkBook)}
+              />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               The book guides readers on how to cultivate deep work habits and minimize the impact of shallow work.
@@ -1054,7 +1083,8 @@ const GrowthPlan = () => {
               <img
                 src={psychologyOfMoneyBook}
                 alt="The Psychology of Money book cover"
-                className="w-full max-w-[200px] h-auto"
+                className={`w-full max-w-[200px] h-auto ${getImageClass(psychologyOfMoneyBook)}`}
+                onLoad={() => handleImageLoad(psychologyOfMoneyBook)}
               />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
@@ -1088,7 +1118,12 @@ const GrowthPlan = () => {
               Does this podcast seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={workLifePodcast} alt="WorkLife podcast cover" className="w-full max-w-[200px] h-auto" />
+              <img 
+                src={workLifePodcast} 
+                alt="WorkLife podcast cover" 
+                className={`w-full max-w-[200px] h-auto ${getImageClass(workLifePodcast)}`}
+                onLoad={() => handleImageLoad(workLifePodcast)}
+              />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               Uncovers valuable lessons and practical strategies that can improve individual and organizational
@@ -1121,7 +1156,12 @@ const GrowthPlan = () => {
               Does Tim Ferriss seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={timFerrissAuthor} alt="Tim Ferriss portrait" className="w-full max-w-[200px] h-auto" />
+              <img 
+                src={timFerrissAuthor} 
+                alt="Tim Ferriss portrait" 
+                className={`w-full max-w-[200px] h-auto ${getImageClass(timFerrissAuthor)}`}
+                onLoad={() => handleImageLoad(timFerrissAuthor)}
+              />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               Tim Ferriss is an influential author, entrepreneur, and podcast host known for his unconventional
@@ -1154,7 +1194,12 @@ const GrowthPlan = () => {
               Does Simon Sinek seem interesting to you?
             </h2>
             <div className="flex justify-center animate-fade-in-delay-1">
-              <img src={simonSinekAuthor} alt="Simon Sinek portrait" className="w-full max-w-[200px] h-auto" />
+              <img 
+                src={simonSinekAuthor} 
+                alt="Simon Sinek portrait" 
+                className={`w-full max-w-[200px] h-auto ${getImageClass(simonSinekAuthor)}`}
+                onLoad={() => handleImageLoad(simonSinekAuthor)}
+              />
             </div>
             <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               An inspiring speaker and author, Simon Sinek focuses on leadership, purpose, and finding fulfillment in
@@ -1188,8 +1233,9 @@ const GrowthPlan = () => {
                 <img
                   src={celebrationIllustration}
                   alt="Celebration"
-                  className="w-full max-w-[300px] h-auto"
+                  className={`w-full max-w-[300px] h-auto ${getImageClass(celebrationIllustration)}`}
                   loading="eager"
+                  onLoad={() => handleImageLoad(celebrationIllustration)}
                 />
               </div>
               <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">Great choices! We're almost done.</h2>
@@ -1209,7 +1255,13 @@ const GrowthPlan = () => {
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
               <div className="flex justify-center animate-fade-in">
-                <img src={worldMap} alt="World map" className="w-full max-w-[500px] h-auto" loading="eager" />
+                <img 
+                  src={worldMap} 
+                  alt="World map" 
+                  className={`w-full max-w-[500px] h-auto ${getImageClass(worldMap)}`}
+                  loading="eager"
+                  onLoad={() => handleImageLoad(worldMap)}
+                />
               </div>
               <h2 className="text-3xl font-bold text-foreground animate-fade-in-delay-1">Join over 10M+ people</h2>
               <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
@@ -1371,7 +1423,12 @@ const GrowthPlan = () => {
           <div key={step} className="space-y-8 pb-12 animate-fade-in bg-background -mx-4 px-4 py-6">
             {/* Logo */}
             <div className="flex justify-center pt-4">
-              <img src={deepkeepLogo} alt="Deepkeep" className="h-10 w-auto" />
+              <img 
+                src={deepkeepLogo} 
+                alt="Deepkeep" 
+                className={`h-10 w-auto ${getImageClass(deepkeepLogo)}`}
+                onLoad={() => handleImageLoad(deepkeepLogo)}
+              />
             </div>
 
             {/* White Panel Container */}
@@ -1440,7 +1497,12 @@ const GrowthPlan = () => {
 
               {/* Platform Compatibility */}
               <div className="flex items-center justify-center gap-3 py-4">
-                <img src={platformLogos} alt="iOS and Android" className="h-12 w-auto" />
+                <img 
+                  src={platformLogos} 
+                  alt="iOS and Android" 
+                  className={`h-12 w-auto ${getImageClass(platformLogos)}`}
+                  onLoad={() => handleImageLoad(platformLogos)}
+                />
                 <p className="text-xs text-muted-foreground">You can use Deepkeep on iOS, Android and web</p>
               </div>
 
@@ -1543,12 +1605,22 @@ const GrowthPlan = () => {
           <div key={step} className="space-y-4 pb-12 animate-fade-in bg-background -mx-4 px-4 py-6">
             {/* Logo at very top */}
             <div className="flex justify-center pt-4 pb-2">
-              <img src={deepkeepLogo} alt="Deepkeep" className="h-10 w-auto" />
+              <img 
+                src={deepkeepLogo} 
+                alt="Deepkeep" 
+                className={`h-10 w-auto ${getImageClass(deepkeepLogo)}`}
+                onLoad={() => handleImageLoad(deepkeepLogo)}
+              />
             </div>
 
             {/* Main Image */}
             <div className="flex justify-center px-4">
-              <img src={becomeInteresting} alt="Become the most interesting person in the room" className="w-full max-w-[600px] h-auto rounded-lg" />
+              <img 
+                src={becomeInteresting} 
+                alt="Become the most interesting person in the room" 
+                className={`w-full max-w-[600px] h-auto rounded-lg ${getImageClass(becomeInteresting)}`}
+                onLoad={() => handleImageLoad(becomeInteresting)}
+              />
             </div>
 
             {/* Carousel Section with Gray Outline */}
@@ -1837,7 +1909,8 @@ const GrowthPlan = () => {
                 <img
                   src={celebrationIllustration}
                   alt="Success"
-                  className="w-full max-w-[300px] h-auto"
+                  className={`w-full max-w-[300px] h-auto ${getImageClass(celebrationIllustration)}`}
+                  onLoad={() => handleImageLoad(celebrationIllustration)}
                 />
               </div>
               <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
@@ -1895,7 +1968,12 @@ const GrowthPlan = () => {
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
-              <img src={deepkeepLogo} alt="deepkeep" className="h-10 w-auto" />
+              <img 
+                src={deepkeepLogo} 
+                alt="deepkeep" 
+                className={`h-10 w-auto ${getImageClass(deepkeepLogo)}`}
+                onLoad={() => handleImageLoad(deepkeepLogo)}
+              />
               <div className="w-10" />
             </div>
           </div>
@@ -1916,7 +1994,12 @@ const GrowthPlan = () => {
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
-              <img src={deepkeepLogo} alt="deepkeep" className="h-10 w-auto" />
+              <img 
+                src={deepkeepLogo} 
+                alt="deepkeep" 
+                className={`h-10 w-auto ${getImageClass(deepkeepLogo)}`}
+                onLoad={() => handleImageLoad(deepkeepLogo)}
+              />
               <div className="w-10" /> {/* Spacer for centering */}
             </div>
 
