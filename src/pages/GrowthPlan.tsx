@@ -1573,6 +1573,111 @@ const GrowthPlan = () => {
                 </p>
               </div>
             </div>
+
+            {/* Duplicate Plan Selection Section */}
+            <div className="mt-12 space-y-6">
+              {/* Header */}
+              <h2 className="text-xl font-bold text-foreground text-center">
+                Choose your plan
+              </h2>
+
+              {/* Pricing Options */}
+              <div className="space-y-3">
+                {/* 1 Month Plan */}
+                <div onClick={() => handleAnswerWithFeedback("plan", "1month")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all ${answers.plan === "1month" ? "border-[#30c090] bg-[#30c090]/5" : "border-border"}`}>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "1month" ? "border-[#30c090]" : "border-muted-foreground"}`}>
+                      {answers.plan === "1month" && <div className="w-3 h-3 rounded-full bg-[#30c090]" />}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold text-foreground">1 Month Plan</span>
+                        <span className="text-white text-xs px-2 py-0.5 rounded-full font-bold bg-primary">
+                          SAVE 51%
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-muted-foreground line-through">€22.61</span>
+                        <span className="text-lg font-bold text-foreground">€11.07</span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="flex items-start">
+                        <span className="text-3xl font-bold text-foreground">€0</span>
+                        <span className="text-sm font-bold text-foreground">.36</span>
+                      </div>
+                      <div className="text-xs text-muted-foreground uppercase">per day</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3 Months Plan - Most Popular */}
+                <div className="relative">
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 text-white text-xs px-4 py-1 rounded-full font-bold z-10 bg-primary">
+                    MOST POPULAR
+                  </div>
+                  <div onClick={() => handleAnswerWithFeedback("plan", "3months")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all mt-2 ${answers.plan === "3months" ? "border-[#30c090] bg-[#30c090]/5" : "border-border"}`}>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "3months" ? "border-[#30c090]" : "border-muted-foreground"}`}>
+                        {answers.plan === "3months" && <div className="w-3 h-3 rounded-full bg-[#30c090]" />}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-semibold text-foreground">3 Months Plan</span>
+                          <span className="text-white text-xs px-2 py-0.5 rounded-full font-bold bg-primary">
+                            SAVE 60%
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-muted-foreground line-through">€49.95</span>
+                          <span className="text-lg font-bold text-foreground">€19.98</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="flex items-start">
+                          <span className="text-3xl font-bold text-foreground">€0</span>
+                          <span className="text-sm font-bold text-foreground">.21</span>
+                        </div>
+                        <div className="text-xs text-muted-foreground uppercase">per day</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 1 Year Plan */}
+                <div onClick={() => handleAnswerWithFeedback("plan", "1year")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all ${answers.plan === "1year" ? "border-[#30c090] bg-[#30c090]/5" : "border-border"}`}>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "1year" ? "border-[#30c090]" : "border-muted-foreground"}`}>
+                      {answers.plan === "1year" && <div className="w-3 h-3 rounded-full bg-[#30c090]" />}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold text-foreground">1 Year Plan</span>
+                        <span className="text-white text-xs px-2 py-0.5 rounded-full font-bold bg-primary">
+                          SAVE 51%
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-muted-foreground line-through">€102</span>
+                        <span className="text-lg font-bold text-foreground">€49.98</span>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="flex items-start">
+                        <span className="text-3xl font-bold text-foreground">€0</span>
+                        <span className="text-sm font-bold text-foreground">.13</span>
+                      </div>
+                      <div className="text-xs text-muted-foreground uppercase">per day</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Continue Button */}
+              <Button onClick={handleStripeCheckout} className="w-full h-12 mt-6" disabled={!answers.plan || isProcessing}>
+                {isProcessing ? "Loading payment form..." : "Continue to Payment"}
+              </Button>
+            </div>
           </div>;
       case 39:
         return <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
