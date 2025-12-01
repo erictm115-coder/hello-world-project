@@ -1331,7 +1331,7 @@ const GrowthPlan = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-semibold text-foreground">1 Month Plan</span>
-                      <span className="bg-destructive text-white text-xs px-2 py-0.5 rounded-full font-bold">
+                      <span className="text-white text-xs px-2 py-0.5 rounded-full font-bold bg-primary">
                         SAVE 51%
                       </span>
                     </div>
@@ -1363,7 +1363,7 @@ const GrowthPlan = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-semibold text-foreground">3 Months Plan</span>
-                        <span className="bg-destructive text-white text-xs px-2 py-0.5 rounded-full font-bold">
+                        <span className="text-white text-xs px-2 py-0.5 rounded-full font-bold bg-primary">
                           SAVE 60%
                         </span>
                       </div>
