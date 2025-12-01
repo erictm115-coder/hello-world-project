@@ -14,3 +14,6 @@ verify_jwt = false
 
 [functions.sync-user-to-app]
 verify_jwt = false
+
+[functions.get-session-details]
+verify_jwt = false

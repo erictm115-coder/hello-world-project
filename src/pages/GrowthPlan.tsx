@@ -51,6 +51,7 @@ const GrowthPlan = () => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [tempPassword, setTempPassword] = useState<string>("");
   const [syncComplete, setSyncComplete] = useState(false);
+  const [stripeCustomerId, setStripeCustomerId] = useState<string | null>(null);
   const { toast } = useToast();
 
   // Generate secure temporary password
@@ -63,15 +64,35 @@ const GrowthPlan = () => {
     return password;
   };
 
-  // Load email from URL if redirected from Stripe
+  // Load email and customer ID from Stripe session if redirected
   useEffect(() => {
     const sessionId = urlParams.get('session_id');
     if (sessionId && initialStep === 39) {
-      // Email should be stored in localStorage or retrieved from Stripe session
-      const storedEmail = localStorage.getItem('deepkeep_email');
-      if (storedEmail) {
-        setAnswers(prev => ({ ...prev, email: storedEmail }));
-      }
+      // Retrieve session details from Stripe
+      const fetchSessionDetails = async () => {
+        try {
+          const { data, error } = await supabase.functions.invoke('get-session-details', {
+            body: { sessionId },
+          });
+
+          if (error) {
+            console.error('Error fetching session details:', error);
+          } else if (data) {
+            console.log('Session details retrieved:', data);
+            setStripeCustomerId(data.customerId);
+            
+            // Also load email from localStorage as backup
+            const storedEmail = localStorage.getItem('deepkeep_email');
+            if (storedEmail) {
+              setAnswers(prev => ({ ...prev, email: storedEmail }));
+            }
+          }
+        } catch (err) {
+          console.error('Failed to fetch session details:', err);
+        }
+      };
+
+      fetchSessionDetails();
     }
   }, []);
 
@@ -221,13 +242,13 @@ const GrowthPlan = () => {
           .eq('email', answers.email)
           .single();
 
-        // Sync user to main app
-        console.log('Syncing user to main app...');
+        // Sync user to main app with Stripe customer ID from checkout session
+        console.log('Syncing user to main app...', { customerId: stripeCustomerId });
         const { data: syncData, error: syncError } = await supabase.functions.invoke('sync-user-to-app', {
           body: {
             email: answers.email,
             tempPassword: generatedTempPassword,
-            stripeCustomerId: subscription?.id,
+            stripeCustomerId: stripeCustomerId || null,
           },
         });
 
