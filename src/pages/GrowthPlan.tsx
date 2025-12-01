@@ -49,7 +49,19 @@ const GrowthPlan = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [tempPassword, setTempPassword] = useState<string>("");
+  const [syncComplete, setSyncComplete] = useState(false);
   const { toast } = useToast();
+
+  // Generate secure temporary password
+  const generateTempPassword = () => {
+    const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%';
+    let password = '';
+    for (let i = 0; i < 16; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
+  };
 
   // Load email from URL if redirected from Stripe
   useEffect(() => {
@@ -180,6 +192,10 @@ const GrowthPlan = () => {
 
     setIsProcessing(true);
     try {
+      // Generate temporary password for main app
+      const generatedTempPassword = generateTempPassword();
+      setTempPassword(generatedTempPassword);
+
       const { data, error } = await supabase.auth.signUp({
         email: answers.email,
         password: answers.password,
@@ -198,14 +214,42 @@ const GrowthPlan = () => {
           .eq('email', answers.email)
           .eq('user_id', '00000000-0000-0000-0000-000000000000');
 
-        toast({
-          title: "Account created!",
-          description: "Welcome to Deepkeep. Redirecting...",
+        // Get stripe customer ID if available
+        const { data: subscription } = await supabase
+          .from('subscriptions')
+          .select('id')
+          .eq('email', answers.email)
+          .single();
+
+        // Sync user to main app
+        console.log('Syncing user to main app...');
+        const { data: syncData, error: syncError } = await supabase.functions.invoke('sync-user-to-app', {
+          body: {
+            email: answers.email,
+            tempPassword: generatedTempPassword,
+            stripeCustomerId: subscription?.id,
+          },
         });
 
-        setTimeout(() => {
-          window.location.href = 'https://app.deepkeep.app';
-        }, 2000);
+        if (syncError) {
+          console.error('Sync error:', syncError);
+          toast({
+            title: "Warning",
+            description: "Account created but sync to main app failed. Please contact support.",
+            variant: "destructive",
+          });
+        } else {
+          console.log('Sync successful:', syncData);
+          setSyncComplete(true);
+        }
+
+        toast({
+          title: "Account created!",
+          description: "Your account has been synced to the main app.",
+        });
+
+        // Move to next step to show credentials
+        setStep(40);
       }
     } catch (error: any) {
       console.error('Error creating account:', error);
@@ -1776,6 +1820,53 @@ const GrowthPlan = () => {
               disabled={!answers.password || answers.password.length < 6 || isProcessing}
             >
               {isProcessing ? "Creating account..." : "Create Account"}
+            </Button>
+          </div>
+        );
+
+      case 40:
+        return (
+          <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
+            <div className="flex-1 flex flex-col justify-center space-y-6">
+              <div className="flex justify-center">
+                <img
+                  src={celebrationIllustration}
+                  alt="Success"
+                  className="w-full max-w-[300px] h-auto"
+                />
+              </div>
+              <h2 className="text-2xl font-bold text-foreground text-center leading-tight">
+                Your account is ready!
+              </h2>
+              <div className="space-y-4 bg-primary/10 p-6 rounded-xl">
+                <p className="text-sm text-foreground font-semibold text-center">
+                  Login credentials for Main App:
+                </p>
+                <div className="space-y-3">
+                  <div className="bg-background p-4 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Email</p>
+                    <p className="text-sm font-mono break-all">{answers.email}</p>
+                  </div>
+                  <div className="bg-background p-4 rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-1">Temporary Password</p>
+                    <p className="text-sm font-mono break-all">{tempPassword}</p>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground text-center mt-4">
+                  ⚠️ Please change your password after logging in for the first time
+                </p>
+              </div>
+              <div className="bg-muted/50 p-4 rounded-lg">
+                <p className="text-sm text-muted-foreground text-center">
+                  Login at: <span className="font-semibold text-foreground">https://app.deepkeep.app</span>
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={() => window.location.href = 'https://app.deepkeep.app'}
+              className="w-full h-12 mt-2"
+            >
+              Go to Main App
             </Button>
           </div>
         );
