@@ -26,6 +26,7 @@ import simonSinekAuthor from "@/assets/simon-sinek-author.png";
 import celebrationIllustration from "@/assets/celebration-illustration.png";
 import platformLogos from "@/assets/platform-logos.png";
 import becomeInteresting from "@/assets/become-interesting.png";
+import blackFridayBanner from "@/assets/black-friday-banner.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -1684,12 +1685,21 @@ const GrowthPlan = () => {
               </h2>
             </div>
 
+            {/* Black Friday Banner */}
+            <div className="flex justify-center px-4 -mb-2">
+              <img 
+                src={blackFridayBanner} 
+                alt="Black Friday Sale" 
+                className="w-full max-w-[600px] h-auto rounded-lg"
+              />
+            </div>
+
             {/* Pricing Options */}
             <div className="space-y-3">
               {/* 1 Month Plan */}
               <div
                 onClick={() => handleAnswerWithFeedback("plan", "1month")}
-                className={`bg-background border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all ${
                   answers.plan === "1month" ? "border-destructive bg-destructive/5" : "border-border"
                 }`}
               >
@@ -1728,7 +1738,7 @@ const GrowthPlan = () => {
                 </div>
                 <div
                   onClick={() => handleAnswerWithFeedback("plan", "3months")}
-                  className={`bg-background border-2 rounded-lg p-4 cursor-pointer transition-all mt-2 ${
+                  className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all mt-2 ${
                     answers.plan === "3months" ? "border-destructive bg-destructive/5" : "border-border"
                   }`}
                 >
@@ -1764,7 +1774,7 @@ const GrowthPlan = () => {
               {/* 1 Year Plan */}
               <div
                 onClick={() => handleAnswerWithFeedback("plan", "1year")}
-                className={`bg-background border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all ${
                   answers.plan === "1year" ? "border-destructive bg-destructive/5" : "border-border"
                 }`}
               >
@@ -1797,90 +1807,19 @@ const GrowthPlan = () => {
               </div>
             </div>
 
-            {/* Payment Method Section */}
-            <div className="space-y-4 pt-4">
-              <h3 className="text-base font-semibold text-foreground">
-                Select payment method
-              </h3>
+            {/* Continue Button */}
+            <Button
+              onClick={handleStripeCheckout}
+              className="w-full h-12 mt-6"
+              disabled={!answers.plan || isProcessing}
+            >
+              {isProcessing ? "Loading payment form..." : "Continue to Payment"}
+            </Button>
 
-              {/* Google Pay Option */}
-              <div
-                onClick={() => handleAnswerWithFeedback("paymentMethod", "googlepay")}
-                className={`bg-background border-2 rounded-lg p-4 cursor-pointer transition-all ${
-                  answers.paymentMethod === "googlepay" ? "border-destructive bg-destructive/5" : "border-border"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                    answers.paymentMethod === "googlepay" ? "border-destructive" : "border-muted-foreground"
-                  }`}>
-                    {answers.paymentMethod === "googlepay" && <div className="w-3 h-3 rounded-full bg-destructive" />}
-                  </div>
-                  <span className="flex-1 font-medium text-foreground">Google Pay</span>
-                  <div className="text-2xl">G</div>
-                </div>
-              </div>
-
-              {/* Credit Card Option */}
-              <div
-                onClick={() => handleAnswerWithFeedback("paymentMethod", "card")}
-                className={`bg-background border-2 rounded-lg p-4 cursor-pointer transition-all ${
-                  answers.paymentMethod === "card" ? "border-destructive bg-destructive/5" : "border-border"
-                }`}
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                      answers.paymentMethod === "card" ? "border-destructive" : "border-muted-foreground"
-                    }`}>
-                      {answers.paymentMethod === "card" && <div className="w-3 h-3 rounded-full bg-destructive" />}
-                    </div>
-                    <div className="flex-1 flex items-center gap-2">
-                      <span className="text-xs font-medium text-muted-foreground">VISA</span>
-                      <span className="text-xs font-medium text-muted-foreground">Mastercard</span>
-                      <span className="text-xs font-medium text-muted-foreground">Discover</span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 pl-8">
-                    <div className="flex items-center gap-2 text-xs text-primary">
-                      <Check className="w-4 h-4" />
-                      <span>No third party dependencies</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-primary">
-                      <Check className="w-4 h-4" />
-                      <span>Secure purchases</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Embedded Payment Form */}
-              {answers.paymentMethod === "card" && clientSecret && (
-                <div className="animate-fade-in">
-                  <Elements stripe={stripePromise} options={{ clientSecret }}>
-                    <PaymentForm 
-                      onSuccess={() => setStep(39)}
-                      onCancel={() => {
-                        setClientSecret(null);
-                        setIsProcessing(false);
-                      }}
-                    />
-                  </Elements>
-                </div>
-              )}
-            </div>
-
-            {/* Continue Button - shown only when payment form is not displayed */}
-            {!clientSecret && (
-              <Button
-                onClick={handleStripeCheckout}
-                className="w-full h-12 mt-6"
-                disabled={!answers.plan || !answers.paymentMethod || isProcessing}
-              >
-                {isProcessing ? "Loading payment form..." : "Continue to Payment"}
-              </Button>
-            )}
+            {/* Discount Message */}
+            <p className="text-sm text-center text-muted-foreground mt-3">
+              We've automatically applied a discount to your subscription price
+            </p>
           </div>
         );
 
