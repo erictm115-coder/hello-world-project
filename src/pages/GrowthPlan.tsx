@@ -1305,7 +1305,7 @@ const GrowthPlan = () => {
             {/* Black Friday Banner with Countdown */}
             <div className="flex justify-center px-2 relative">
               <img src={blackFridayBanner} alt="Black Friday Sale" className="w-full max-w-[600px] h-auto rounded-lg" />
-              <div className="absolute bottom-0 right-[2%] text-white px-2 py-1 rounded-md shadow-lg border-primary bg-[#061912] border">
+              <div className="absolute text-white px-2 py-1 rounded-md shadow-lg border-primary bg-[#061912] border" style={{ bottom: '-14px', right: '6px' }}>
                 <div className="text-xs font-bold tabular-nums">
                   {formatCountdown(countdown)}
                 </div>
