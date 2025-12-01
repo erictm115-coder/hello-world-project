@@ -272,10 +272,10 @@ const GrowthPlan = () => {
       case 1:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               The effects of doomscrolling can vary by age. What age group are you in?
             </h2>
-            <div className="space-y-3">
+            <div className="space-y-3 animate-fade-in-delay-2">
               {["Under 18", "18-24", "25-34", "35-44", "45+"].map((age) => (
                 <Button
                   key={age}
@@ -294,7 +294,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={welcomeIllustration}
                   alt="Welcome illustration"
@@ -302,12 +302,12 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <h2 className="text-3xl font-bold text-foreground">Welcome!</h2>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <h2 className="text-3xl font-bold text-foreground animate-fade-in-delay-1">Welcome!</h2>
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 We're here to support your self-growth journey. Let's proceed to learn more about you!
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -316,10 +316,10 @@ const GrowthPlan = () => {
       case 3:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Do you focus on the big picture or prefer the finer details?
             </h2>
-            <div className="space-y-3">
+            <div className="space-y-3 animate-fade-in-delay-2">
               <Button
                 onClick={() => handleAnswer("thinking", "visionary")}
                 variant="outline"
@@ -342,7 +342,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={bigPictureIllustration}
                   alt="Big picture thinking illustration"
@@ -350,15 +350,15 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <p className="text-lg font-bold text-foreground leading-snug">
+              <p className="text-lg font-bold text-foreground leading-snug animate-fade-in-delay-1">
                 Big-picture thinking is a valuable skill for tackling complex challenges.
               </p>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 Both perspectives are equally important, and attention to detail matters too. We'll tailor your plan to
                 help you enhance both your ability to see the bigger scope and focus on finer details.
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -368,7 +368,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center">
-              <h2 className="text-lg font-semibold text-foreground text-center leading-tight mb-4">
+              <h2 className="text-xl font-semibold text-foreground text-center leading-tight mb-4 animate-fade-in-delay-1">
                 Do you always have a clear idea of what you want?
               </h2>
               <div className="min-h-[80px] mb-3">
@@ -397,7 +397,7 @@ const GrowthPlan = () => {
                   </div>
                 )}
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 animate-fade-in-delay-2">
                 <div className="flex gap-2">
                   {[1, 2, 3, 4, 5].map((num) => (
                     <Button
@@ -427,10 +427,10 @@ const GrowthPlan = () => {
       case 6:
         return (
           <div key={step} className="space-y-4 flex flex-col min-h-[calc(100vh-280px)] animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               I tend to doubt myself and my skills if I make a mistake
             </h2>
-            <div className="flex-1 flex flex-col justify-center space-y-4">
+            <div className="flex-1 flex flex-col justify-center space-y-4 animate-fade-in-delay-2">
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <Button
@@ -455,7 +455,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={mistakesIllustration}
                   alt="Mistakes illustration"
@@ -463,16 +463,16 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <p className="text-base font-bold text-foreground leading-snug">
+              <p className="text-base font-bold text-foreground leading-snug animate-fade-in-delay-1">
                 If you don't make mistakes, you don't make anything. So, doubting yourself and your skills is normal if
                 you make a mistake, buddy!
               </p>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 However, working out this issue will help you achieve your goals more seamlessly and efficiently. And
                 your growth plan will target this as well.
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -482,7 +482,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center">
-              <h2 className="text-lg font-semibold text-foreground text-center leading-tight mb-4">
+              <h2 className="text-xl font-semibold text-foreground text-center leading-tight mb-4 animate-fade-in-delay-1">
                 Which best describes you?
               </h2>
               <div className="h-[140px] mb-3 flex items-start">
@@ -504,7 +504,7 @@ const GrowthPlan = () => {
                   </div>
                 )}
               </div>
-              <div className="space-y-3">
+              <div className="space-y-3 animate-fade-in-delay-2">
                 <Button
                   onClick={() => handleAnswerWithFeedback("role", "leader")}
                   variant="outline"
@@ -539,10 +539,10 @@ const GrowthPlan = () => {
       case 9:
         return (
           <div key={step} className="space-y-4 flex flex-col min-h-[calc(100vh-280px)] animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               I often find it challenging to make a decision quickly
             </h2>
-            <div className="flex-1 flex flex-col justify-center space-y-4">
+            <div className="flex-1 flex flex-col justify-center space-y-4 animate-fade-in-delay-2">
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <Button
@@ -567,7 +567,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={decisivenessIllustration}
                   alt="Decisiveness illustration"
@@ -575,12 +575,12 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <h2 className="text-3xl font-bold text-foreground">Way to go!</h2>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <h2 className="text-3xl font-bold text-foreground animate-fade-in-delay-1">Way to go!</h2>
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 We admire your decisiveness, as it's an essential trait for becoming successful.
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -590,7 +590,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={honestIllustration}
                   alt="Thanks for being honest illustration"
@@ -598,13 +598,13 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <h2 className="text-xl font-bold text-foreground">Thanks for being honest!</h2>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">Thanks for being honest!</h2>
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 Now, we'll dive into your personality to have a better idea of you. It will help us build a personal
                 approach to your growth plan.
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue to Next Section
             </Button>
           </div>
@@ -613,10 +613,10 @@ const GrowthPlan = () => {
       case 12:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               What do you consider yourself?
             </h2>
-            <div className="space-y-3 pt-8">
+            <div className="space-y-3 pt-8 animate-fade-in-delay-2">
               <Button
                 onClick={() => handleAnswer("personality", "extrovert")}
                 variant="outline"
@@ -646,7 +646,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={extrovertIllustration}
                   alt="Cheers to the extrovert squad illustration"
@@ -654,13 +654,13 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <h2 className="text-xl font-bold text-foreground">Cheers to the extrovert squad!</h2>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">Cheers to the extrovert squad!</h2>
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 Extroverts thrive on connection and energy, requiring a tailored approach to happiness. We'll use your
                 inputs to create a personalized growth plan that aligns with your needs!
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -670,7 +670,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center">
-              <h2 className="text-lg font-semibold text-foreground text-center leading-tight mb-4">
+              <h2 className="text-xl font-semibold text-foreground text-center leading-tight mb-4 animate-fade-in-delay-1">
                 Do you believe regular workouts improve your performance at work?
               </h2>
               <div className="h-[140px] mb-3 flex items-start">
@@ -692,7 +692,7 @@ const GrowthPlan = () => {
                   </div>
                 )}
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 animate-fade-in-delay-2">
                 <div className="flex gap-2">
                   {[1, 2, 3, 4, 5].map((num) => (
                     <Button
@@ -722,10 +722,10 @@ const GrowthPlan = () => {
       case 15:
         return (
           <div key={step} className="space-y-4 flex flex-col min-h-[calc(100vh-280px)] animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Do you sometimes need a friendly push to keep moving forward?
             </h2>
-            <div className="flex-1 flex flex-col justify-center space-y-4">
+            <div className="flex-1 flex flex-col justify-center space-y-4 animate-fade-in-delay-2">
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <Button
@@ -750,7 +750,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={motivatorIllustration}
                   alt="A friendly push motivator illustration"
@@ -758,14 +758,14 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <p className="text-base font-bold text-foreground leading-snug">
+              <p className="text-base font-bold text-foreground leading-snug animate-fade-in-delay-1">
                 A friendly push here and there can surely be an excellent motivator.
               </p>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 We'll consider how you feel about it for creating your growth plan.
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -775,7 +775,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center">
-              <h2 className="text-lg font-semibold text-foreground text-center leading-tight mb-4">
+              <h2 className="text-xl font-semibold text-foreground text-center leading-tight mb-4 animate-fade-in-delay-1">
                 Do you feel the need to improve your time management skills?
               </h2>
               <div className="h-[140px] mb-3 flex items-start">
@@ -797,7 +797,7 @@ const GrowthPlan = () => {
                   </div>
                 )}
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 animate-fade-in-delay-2">
                 <div className="flex gap-2">
                   {[1, 2, 3, 4, 5].map((num) => (
                     <Button
@@ -827,10 +827,10 @@ const GrowthPlan = () => {
       case 18:
         return (
           <div key={step} className="space-y-4 flex flex-col min-h-[calc(100vh-280px)] animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               I often tend to lose my boundaries in relationships
             </h2>
-            <div className="flex-1 flex flex-col justify-center space-y-4">
+            <div className="flex-1 flex flex-col justify-center space-y-4 animate-fade-in-delay-2">
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <Button
@@ -855,7 +855,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={honestIllustration}
                   alt="Boundaries illustration"
@@ -867,17 +867,17 @@ const GrowthPlan = () => {
                 <>
                   {answers.boundaries === 1 || answers.boundaries === 2 ? (
                     <>
-                      <h2 className="text-xl font-bold text-foreground">Great for you!</h2>
-                      <p className="text-sm text-muted-foreground leading-snug">
+                      <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">Great for you!</h2>
+                      <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                         Your boundaries are important and valid, and we're glad you hold onto them.
                       </p>
                     </>
                   ) : (
                     <>
-                      <p className="text-xl font-bold text-foreground leading-snug mb-4">
+                      <p className="text-xl font-bold text-foreground leading-snug mb-4 animate-fade-in-delay-1">
                         No matter what, your boundaries are important, and it can hurt to lose them.
                       </p>
-                      <p className="text-base text-muted-foreground leading-snug">
+                      <p className="text-base text-muted-foreground leading-snug animate-fade-in-delay-2">
                         There's always room for improvement, though! We'll help you work on it with your growth plan.
                       </p>
                     </>
@@ -896,10 +896,10 @@ const GrowthPlan = () => {
       case 20:
         return (
           <div key={step} className="space-y-4 flex flex-col min-h-[calc(100vh-280px)] animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Do you want to better understand your body and desires?
             </h2>
-            <div className="flex-1 flex flex-col justify-center space-y-4">
+            <div className="flex-1 flex flex-col justify-center space-y-4 animate-fade-in-delay-2">
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <Button
@@ -924,7 +924,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={amazingCloudsIllustration}
                   alt="You're amazing illustration"
@@ -932,13 +932,13 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <h2 className="text-xl font-bold text-foreground">You're amazing!</h2>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">You're amazing!</h2>
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 Your determination is inspiring! Let's take a closer look at your favorite books, podcasts, and authors
                 to craft the perfect growth plan for you.
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -947,16 +947,16 @@ const GrowthPlan = () => {
       case 22:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Does this book seem interesting to you?
             </h2>
-            <div className="flex justify-center">
+            <div className="flex justify-center animate-fade-in-delay-1">
               <img src={atomicHabitsBook} alt="Atomic Habits book cover" className="w-full max-w-[200px] h-auto" />
             </div>
-            <p className="text-sm text-muted-foreground text-center leading-snug">
+            <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               An easy & proven way to build good habits & break bad ones. Helps build tiny changes into remarkable results.
             </p>
-            <div className="flex gap-4 justify-center pt-2">
+            <div className="flex gap-4 justify-center pt-2 animate-fade-in-delay-3">
               <Button
                 onClick={() => handleAnswer("book1", false)}
                 variant="outline"
@@ -979,20 +979,20 @@ const GrowthPlan = () => {
       case 23:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Does this book seem interesting to you?
             </h2>
-            <div className="flex justify-center">
+            <div className="flex justify-center animate-fade-in-delay-1">
               <img
                 src={winFriendsBook}
                 alt="How to Win Friends and Influence People book cover"
                 className="w-full max-w-[200px] h-auto"
               />
             </div>
-            <p className="text-sm text-muted-foreground text-center leading-snug">
+            <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               Provides practical techniques to win people over, handle conflicts, and inspire cooperation.
             </p>
-            <div className="flex gap-4 justify-center pt-2">
+            <div className="flex gap-4 justify-center pt-2 animate-fade-in-delay-3">
               <Button
                 onClick={() => handleAnswer("book2", false)}
                 variant="outline"
@@ -1015,16 +1015,16 @@ const GrowthPlan = () => {
       case 24:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Does this book seem interesting to you?
             </h2>
-            <div className="flex justify-center">
+            <div className="flex justify-center animate-fade-in-delay-1">
               <img src={deepWorkBook} alt="Deep Work book cover" className="w-full max-w-[200px] h-auto" />
             </div>
-            <p className="text-sm text-muted-foreground text-center leading-snug">
+            <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               The book guides readers on how to cultivate deep work habits and minimize the impact of shallow work.
             </p>
-            <div className="flex gap-4 justify-center pt-2">
+            <div className="flex gap-4 justify-center pt-2 animate-fade-in-delay-3">
               <Button
                 onClick={() => handleAnswer("book3", false)}
                 variant="outline"
@@ -1047,21 +1047,21 @@ const GrowthPlan = () => {
       case 25:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Does this book seem interesting to you?
             </h2>
-            <div className="flex justify-center">
+            <div className="flex justify-center animate-fade-in-delay-1">
               <img
                 src={psychologyOfMoneyBook}
                 alt="The Psychology of Money book cover"
                 className="w-full max-w-[200px] h-auto"
               />
             </div>
-            <p className="text-sm text-muted-foreground text-center leading-snug">
+            <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               A collection of short stories exploring the strange ways people think about money and teaches you how to
               make better sense of it.
             </p>
-            <div className="flex gap-4 justify-center pt-2">
+            <div className="flex gap-4 justify-center pt-2 animate-fade-in-delay-3">
               <Button
                 onClick={() => handleAnswer("book4", false)}
                 variant="outline"
@@ -1084,17 +1084,17 @@ const GrowthPlan = () => {
       case 26:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Does this podcast seem interesting to you?
             </h2>
-            <div className="flex justify-center">
+            <div className="flex justify-center animate-fade-in-delay-1">
               <img src={workLifePodcast} alt="WorkLife podcast cover" className="w-full max-w-[200px] h-auto" />
             </div>
-            <p className="text-sm text-muted-foreground text-center leading-snug">
+            <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               Uncovers valuable lessons and practical strategies that can improve individual and organizational
               performance.
             </p>
-            <div className="flex gap-4 justify-center pt-2">
+            <div className="flex gap-4 justify-center pt-2 animate-fade-in-delay-3">
               <Button
                 onClick={() => handleAnswer("podcast1", false)}
                 variant="outline"
@@ -1117,17 +1117,17 @@ const GrowthPlan = () => {
       case 27:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Does Tim Ferriss seem interesting to you?
             </h2>
-            <div className="flex justify-center">
+            <div className="flex justify-center animate-fade-in-delay-1">
               <img src={timFerrissAuthor} alt="Tim Ferriss portrait" className="w-full max-w-[200px] h-auto" />
             </div>
-            <p className="text-sm text-muted-foreground text-center leading-snug">
+            <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               Tim Ferriss is an influential author, entrepreneur, and podcast host known for his unconventional
               strategies and unique approach to self-improvement.
             </p>
-            <div className="flex gap-4 justify-center pt-2">
+            <div className="flex gap-4 justify-center pt-2 animate-fade-in-delay-3">
               <Button
                 onClick={() => handleAnswer("author1", false)}
                 variant="outline"
@@ -1150,17 +1150,17 @@ const GrowthPlan = () => {
       case 28:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Does Simon Sinek seem interesting to you?
             </h2>
-            <div className="flex justify-center">
+            <div className="flex justify-center animate-fade-in-delay-1">
               <img src={simonSinekAuthor} alt="Simon Sinek portrait" className="w-full max-w-[200px] h-auto" />
             </div>
-            <p className="text-sm text-muted-foreground text-center leading-snug">
+            <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               An inspiring speaker and author, Simon Sinek focuses on leadership, purpose, and finding fulfillment in
               work and life.
             </p>
-            <div className="flex gap-4 justify-center pt-2">
+            <div className="flex gap-4 justify-center pt-2 animate-fade-in-delay-3">
               <Button
                 onClick={() => handleAnswer("author2", false)}
                 variant="outline"
@@ -1184,7 +1184,7 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img
                   src={celebrationIllustration}
                   alt="Celebration"
@@ -1192,13 +1192,13 @@ const GrowthPlan = () => {
                   loading="eager"
                 />
               </div>
-              <h2 className="text-xl font-bold text-foreground">Great choices! We're almost done.</h2>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <h2 className="text-xl font-bold text-foreground animate-fade-in-delay-1">Great choices! We're almost done.</h2>
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 Thanks for your impressive sincerity. We've almost done setting up your journey. A little patience,
                 fellow!
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -1208,15 +1208,15 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
             <div className="flex-1 flex flex-col justify-center space-y-6 text-center">
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <img src={worldMap} alt="World map" className="w-full max-w-[500px] h-auto" loading="eager" />
               </div>
-              <h2 className="text-3xl font-bold text-foreground">Join over 10M+ people</h2>
-              <p className="text-sm text-muted-foreground leading-snug">
+              <h2 className="text-3xl font-bold text-foreground animate-fade-in-delay-1">Join over 10M+ people</h2>
+              <p className="text-sm text-muted-foreground leading-snug animate-fade-in-delay-2">
                 Become part of the community that escaped doomscrolling. Grow daily and achieve your goals with us.
               </p>
             </div>
-            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2">
+            <Button onClick={() => setStep(step + 1)} className="w-full h-12 mt-2 animate-fade-in-delay-3">
               Continue
             </Button>
           </div>
@@ -1246,10 +1246,10 @@ const GrowthPlan = () => {
         return (
           <div key={step} className="flex flex-col min-h-[calc(100vh-300px)] animate-fade-in">
             <div className="flex-1 flex flex-col justify-center">
-              <h2 className="text-lg font-semibold text-foreground text-center leading-tight mb-6">
+              <h2 className="text-xl font-semibold text-foreground text-center leading-tight mb-6 animate-fade-in-delay-1">
                 What drives your self-growth journey?
               </h2>
-              <div className="space-y-3">
+              <div className="space-y-3 animate-fade-in-delay-2">
                 {growthOptions.map((option, index) => {
                   const isSelected = selectedGrowthDrivers.includes(option.text);
                   return (
@@ -1286,13 +1286,13 @@ const GrowthPlan = () => {
       case 32:
         return (
           <div key={step} className="space-y-6 animate-fade-in">
-            <h2 className="text-lg font-semibold text-foreground text-center leading-tight">
+            <h2 className="text-xl font-semibold text-foreground text-center leading-tight animate-fade-in-delay-1">
               Set Your Daily Self-Development Goal
             </h2>
-            <p className="text-sm text-muted-foreground text-center leading-snug">
+            <p className="text-sm text-muted-foreground text-center leading-snug animate-fade-in-delay-2">
               Choose how much time you want to dedicate to self-growth each day.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-3 animate-fade-in-delay-3">
               {[
                 { emoji: "🌱", text: "Light - 5 min/day", value: "light" },
                 { emoji: "🌿", text: "Moderate - 10 min/day", value: "moderate" },
