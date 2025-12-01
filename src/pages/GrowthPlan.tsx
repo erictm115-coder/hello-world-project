@@ -27,7 +27,6 @@ import celebrationIllustration from "@/assets/celebration-illustration.png";
 import platformLogos from "@/assets/platform-logos.png";
 import becomeInteresting from "@/assets/become-interesting.png";
 import blackFridayBanner from "@/assets/black-friday-banner-new.png";
-import moneyBackGuarantee from "@/assets/money-back-guarantee.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -1424,8 +1423,16 @@ const GrowthPlan = () => {
             </p>
 
             {/* Money-Back Guarantee */}
-            <div className="mt-6">
-              <img src={moneyBackGuarantee} alt="30-day Money-Back Guarantee" className="w-full h-auto" />
+            <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
+              <div className="flex items-start gap-3">
+                <div className="text-3xl flex-shrink-0">🏆</div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-foreground mb-2">30-day Money-Back Guarantee</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    We believe that our lessons will make a difference for you. However, if you don't see the value of Deepkeep after completing different lessons, books and quotes, we'll be ready to refund your money. Find more details in our <span className="text-destructive underline cursor-pointer">money-back policy</span>.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>;
       case 39:
