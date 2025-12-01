@@ -1703,11 +1703,11 @@ const GrowthPlan = () => {
                 alt="Black Friday Sale" 
                 className="w-full max-w-[550px] h-auto rounded-lg"
               />
-              <div className="absolute bottom-4 right-[10%] bg-red-600 text-white px-4 py-2 rounded-lg border-2 border-red-700 shadow-lg">
-                <div className="text-lg font-bold tabular-nums">
+              <div className="absolute bottom-4 right-[10%] bg-red-600 text-white px-3 py-1.5 rounded-md border border-red-700 shadow-lg">
+                <div className="text-sm font-bold tabular-nums">
                   {formatCountdown(countdown)}
                 </div>
-                <div className="text-[10px] uppercase tracking-wide text-center">
+                <div className="text-[8px] uppercase tracking-wide text-center">
                   min &nbsp; sec
                 </div>
               </div>
