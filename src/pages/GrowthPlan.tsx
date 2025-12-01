@@ -28,6 +28,7 @@ import platformLogos from "@/assets/platform-logos.png";
 import becomeInteresting from "@/assets/become-interesting.png";
 import blackFridayBanner from "@/assets/black-friday-banner-new.png";
 import stripePaymentBadges from "@/assets/stripe-payment-badges.png";
+import appShowcase from "@/assets/app-showcase.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -1442,6 +1443,11 @@ const GrowthPlan = () => {
             {/* Stripe Payment Badges */}
             <div className="mt-6 flex justify-center">
               <img src={stripePaymentBadges} alt="Powered by Stripe" className="w-full max-w-[200px] h-auto" />
+            </div>
+
+            {/* App Showcase */}
+            <div className="mt-8 flex justify-center">
+              <img src={appShowcase} alt="App showcase" className="w-full max-w-md h-auto" />
             </div>
           </div>;
       case 39:
