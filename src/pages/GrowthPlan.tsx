@@ -28,8 +28,10 @@ import platformLogos from "@/assets/platform-logos.png";
 import becomeInteresting from "@/assets/become-interesting.png";
 import blackFridayBanner from "@/assets/black-friday-banner-new.png";
 import stripePaymentBadges from "@/assets/stripe-payment-badges.png";
-import appShowcase from "@/assets/app-showcase.png";
-import scanBooksFeature from "@/assets/scan-books-feature.png";
+import featureMicrolearning from "@/assets/feature-microlearning.png";
+import featureScanBooks from "@/assets/feature-scan-books.png";
+import featureListenLearn from "@/assets/feature-listen-learn.png";
+import featureReadingHabit from "@/assets/feature-reading-habit.png";
 import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -137,7 +139,7 @@ const GrowthPlan = () => {
   useEffect(() => {
     if (step === 38) {
       const interval = setInterval(() => {
-        setAppShowcaseIndex(prev => (prev + 1) % 2);
+        setAppShowcaseIndex(prev => (prev + 1) % 4);
       }, 4000);
       return () => clearInterval(interval);
     }
@@ -1464,16 +1466,22 @@ const GrowthPlan = () => {
                   transform: `translateX(-${appShowcaseIndex * 100}%)`
                 }}>
                   <div className="w-full flex-shrink-0 flex justify-center">
-                    <img src={appShowcase} alt="Quick microlearning insights" className="w-full h-auto" />
+                    <img src={featureMicrolearning} alt="Quick microlearning insights" className="w-full h-auto" />
                   </div>
                   <div className="w-full flex-shrink-0 flex justify-center">
-                    <img src={scanBooksFeature} alt="Scan books, get key ideas" className="w-full h-auto" />
+                    <img src={featureScanBooks} alt="Scan books, get key ideas" className="w-full h-auto" />
+                  </div>
+                  <div className="w-full flex-shrink-0 flex justify-center">
+                    <img src={featureListenLearn} alt="Listen & learn with little effort" className="w-full h-auto" />
+                  </div>
+                  <div className="w-full flex-shrink-0 flex justify-center">
+                    <img src={featureReadingHabit} alt="Build a powerful reading habit" className="w-full h-auto" />
                   </div>
                 </div>
                 
                 {/* Carousel Indicators */}
                 <div className="flex justify-center gap-2 mt-4">
-                  {[0, 1].map((idx) => (
+                  {[0, 1, 2, 3].map((idx) => (
                     <button
                       key={idx}
                       onClick={() => setAppShowcaseIndex(idx)}
