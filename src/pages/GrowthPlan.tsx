@@ -1878,13 +1878,13 @@ const GrowthPlan = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Logo-only Header for steps 38 and 39 */}
-      {(step === 38 || step === 39) && (
+      {/* Logo-only Header for steps 38, 39, and 40 */}
+      {(step === 38 || step === 39 || step === 40) && (
         <div className="fixed top-0 left-0 right-0 bg-background z-10 border-b border-border">
           <div className="w-full max-w-[600px] mx-auto px-4 pt-4 pb-3">
             <div className="flex items-center justify-between">
               <Button
-                onClick={() => setStep(step === 39 ? 38 : 36)}
+                onClick={() => setStep(step === 40 ? 39 : step === 39 ? 38 : 36)}
                 variant="ghost"
                 size="icon"
                 className="text-muted-foreground"
@@ -1899,7 +1899,7 @@ const GrowthPlan = () => {
       )}
 
       {/* Fixed Header with Progress */}
-      {step !== 33 && step !== 34 && step !== 35 && step !== 36 && step !== 38 && step !== 39 && (
+      {step !== 33 && step !== 34 && step !== 35 && step !== 36 && step !== 38 && step !== 39 && step !== 40 && (
         <div className="fixed top-0 left-0 right-0 bg-background z-10 border-b border-border">
           <div className="w-full max-w-[600px] mx-auto px-4 pt-4 pb-3 space-y-3">
             {/* Back Button & Logo */}
@@ -1944,7 +1944,7 @@ const GrowthPlan = () => {
       <div className={
         step === 33 || step === 34 || step === 35 || step === 36 || step === 37 
           ? "px-4 pb-6" 
-          : step === 38 || step === 39
+          : step === 38 || step === 39 || step === 40
           ? "pt-[80px] px-4 pb-6"
           : "pt-[140px] px-4 pb-6"
       }>

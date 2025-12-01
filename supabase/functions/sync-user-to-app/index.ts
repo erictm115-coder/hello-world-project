@@ -71,9 +71,10 @@ serve(async (req) => {
     );
   } catch (error) {
     console.error("[SYNC-USER] Error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to sync user to main app";
     return new Response(
       JSON.stringify({ 
-        error: error.message || "Failed to sync user to main app" 
+        error: errorMessage
       }),
       {
         status: 500,
