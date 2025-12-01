@@ -32,7 +32,7 @@ import featureMicrolearning from "@/assets/feature-microlearning.png";
 import featureScanBooks from "@/assets/feature-scan-books.png";
 import featureListenLearn from "@/assets/feature-listen-learn.png";
 import featureReadingHabit from "@/assets/feature-reading-habit.png";
-import { Check, ArrowLeft, X, Lock, CreditCard } from "lucide-react";
+import { Check, ArrowLeft, X, Lock, CreditCard, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -1496,62 +1496,65 @@ const GrowthPlan = () => {
             </div>
 
             {/* User Reviews */}
-            <div className="mt-8 space-y-4">
+            <div className="mt-8 space-y-3">
               {/* Review 1 */}
-              <div className="p-4 bg-muted/50 rounded-lg border border-border">
-                <div className="flex items-start gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="flex text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i}>⭐</span>
-                        ))}
-                      </div>
+              <div className="p-3 bg-muted/50 rounded-lg border border-border">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <User className="w-4 h-4 text-primary" />
                     </div>
-                    <p className="text-sm text-foreground leading-relaxed mb-3">
-                      I love how they can summarize the books into different topic ideas. That combined with the quotes I can read and point system . I love learning already, and this app makes it addictive.
-                    </p>
-                    <p className="text-xs text-muted-foreground font-medium">by christopher bowne</p>
+                    <p className="text-xs text-muted-foreground font-medium">christopher bowne</p>
+                  </div>
+                  <div className="flex text-yellow-500 text-sm">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>⭐</span>
+                    ))}
                   </div>
                 </div>
+                <p className="text-sm text-foreground leading-relaxed">
+                  I love how they can summarize the books into different topic ideas. That combined with the quotes I can read and point system . I love learning already, and this app makes it addictive.
+                </p>
               </div>
 
               {/* Review 2 */}
-              <div className="p-4 bg-muted/50 rounded-lg border border-border">
-                <div className="flex items-start gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="flex text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i}>⭐</span>
-                        ))}
-                      </div>
+              <div className="p-3 bg-muted/50 rounded-lg border border-border">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <User className="w-4 h-4 text-primary" />
                     </div>
-                    <p className="text-sm text-foreground leading-relaxed mb-3">
-                      I love this app for learning and exploring ideas in short bursts. It's the perfect replacement for scrolling social media. I feel much better spending my down time scrolling this app then most others. Definitely worth the subscription
-                    </p>
-                    <p className="text-xs text-muted-foreground font-medium">by whatwhatandp2</p>
+                    <p className="text-xs text-muted-foreground font-medium">whatwhatandp2</p>
+                  </div>
+                  <div className="flex text-yellow-500 text-sm">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>⭐</span>
+                    ))}
                   </div>
                 </div>
+                <p className="text-sm text-foreground leading-relaxed">
+                  I love this app for learning and exploring ideas in short bursts. It's the perfect replacement for scrolling social media. I feel much better spending my down time scrolling this app then most others. Definitely worth the subscription
+                </p>
               </div>
 
               {/* Review 3 */}
-              <div className="p-4 bg-muted/50 rounded-lg border border-border">
-                <div className="flex items-start gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="flex text-yellow-500">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i}>⭐</span>
-                        ))}
-                      </div>
+              <div className="p-3 bg-muted/50 rounded-lg border border-border">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <User className="w-4 h-4 text-primary" />
                     </div>
-                    <p className="text-sm text-foreground leading-relaxed mb-3">
-                      I love to read and learn but never have enough time. This app has really been enjoyable for times when I have a short break and I can check out content that will teach me something new or lead me to discover a new great book. I look forward to my daily "stashing!"
-                    </p>
-                    <p className="text-xs text-muted-foreground font-medium">by bro.mike</p>
+                    <p className="text-xs text-muted-foreground font-medium">bro.mike</p>
+                  </div>
+                  <div className="flex text-yellow-500 text-sm">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i}>⭐</span>
+                    ))}
                   </div>
                 </div>
+                <p className="text-sm text-foreground leading-relaxed">
+                  I love to read and learn but never have enough time. This app has really been enjoyable for times when I have a short break and I can check out content that will teach me something new or lead me to discover a new great book. I look forward to my daily "stashing!"
+                </p>
               </div>
             </div>
           </div>;
