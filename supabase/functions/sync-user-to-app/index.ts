@@ -35,6 +35,16 @@ serve(async (req) => {
       throw new Error("MAIN_APP_URL environment variable not set");
     }
 
+    // Validate that mainAppUrl is a valid URL
+    try {
+      new URL(mainAppUrl);
+    } catch (error) {
+      console.error("[SYNC-USER] Invalid MAIN_APP_URL:", mainAppUrl);
+      throw new Error(`MAIN_APP_URL is not a valid URL: ${mainAppUrl}`);
+    }
+
+    console.log("[SYNC-USER] Using MAIN_APP_URL:", mainAppUrl);
+
     // Send POST request to main app's API
     const response = await fetch(`${mainAppUrl}/functions/v1/create-user`, {
       method: "POST",
