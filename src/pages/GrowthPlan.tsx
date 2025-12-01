@@ -1323,10 +1323,10 @@ const GrowthPlan = () => {
             {/* Pricing Options */}
             <div className="space-y-3">
               {/* 1 Month Plan */}
-              <div onClick={() => handleAnswerWithFeedback("plan", "1month")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all ${answers.plan === "1month" ? "border-destructive bg-destructive/5" : "border-border"}`}>
+              <div onClick={() => handleAnswerWithFeedback("plan", "1month")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all ${answers.plan === "1month" ? "border-[#30c090] bg-[#30c090]/5" : "border-border"}`}>
                 <div className="flex items-center gap-3">
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "1month" ? "border-destructive" : "border-muted-foreground"}`}>
-                    {answers.plan === "1month" && <div className="w-3 h-3 rounded-full bg-destructive" />}
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "1month" ? "border-[#30c090]" : "border-muted-foreground"}`}>
+                    {answers.plan === "1month" && <div className="w-3 h-3 rounded-full bg-[#30c090]" />}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -1355,10 +1355,10 @@ const GrowthPlan = () => {
                 <div className="absolute -top-2 left-1/2 -translate-x-1/2 text-white text-xs px-4 py-1 rounded-full font-bold z-10 bg-primary">
                   MOST POPULAR
                 </div>
-                <div onClick={() => handleAnswerWithFeedback("plan", "3months")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all mt-2 ${answers.plan === "3months" ? "border-destructive bg-destructive/5" : "border-border"}`}>
+                <div onClick={() => handleAnswerWithFeedback("plan", "3months")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all mt-2 ${answers.plan === "3months" ? "border-[#30c090] bg-[#30c090]/5" : "border-border"}`}>
                   <div className="flex items-center gap-3">
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "3months" ? "border-destructive" : "border-muted-foreground"}`}>
-                      {answers.plan === "3months" && <div className="w-3 h-3 rounded-full bg-destructive" />}
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "3months" ? "border-[#30c090]" : "border-muted-foreground"}`}>
+                      {answers.plan === "3months" && <div className="w-3 h-3 rounded-full bg-[#30c090]" />}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
@@ -1384,10 +1384,10 @@ const GrowthPlan = () => {
               </div>
 
               {/* 1 Year Plan */}
-              <div onClick={() => handleAnswerWithFeedback("plan", "1year")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all ${answers.plan === "1year" ? "border-destructive bg-destructive/5" : "border-border"}`}>
+              <div onClick={() => handleAnswerWithFeedback("plan", "1year")} className={`bg-muted border-2 rounded-lg p-4 cursor-pointer transition-all ${answers.plan === "1year" ? "border-[#30c090] bg-[#30c090]/5" : "border-border"}`}>
                 <div className="flex items-center gap-3">
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "1year" ? "border-destructive" : "border-muted-foreground"}`}>
-                    {answers.plan === "1year" && <div className="w-3 h-3 rounded-full bg-primary" />}
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers.plan === "1year" ? "border-[#30c090]" : "border-muted-foreground"}`}>
+                    {answers.plan === "1year" && <div className="w-3 h-3 rounded-full bg-[#30c090]" />}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
