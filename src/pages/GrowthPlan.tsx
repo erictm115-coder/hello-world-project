@@ -69,6 +69,7 @@ const GrowthPlan = () => {
   const [syncComplete, setSyncComplete] = useState(false);
   const [stripeCustomerId, setStripeCustomerId] = useState<string | null>(null);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const [countdown, setCountdown] = useState(600); // 10 minutes in seconds
   const { toast } = useToast();
 
   const handleImageLoad = (imageSrc: string) => {
@@ -127,6 +128,23 @@ const GrowthPlan = () => {
       return () => clearInterval(interval);
     }
   }, [step]);
+
+  // Countdown timer effect for step 38
+  useEffect(() => {
+    if (step === 38 && countdown > 0) {
+      const timer = setInterval(() => {
+        setCountdown((prev) => Math.max(0, prev - 1));
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [step, countdown]);
+
+  // Format countdown as MM:SS
+  const formatCountdown = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
 
   // Calculate progress for each section
   const profileSteps = 11;
@@ -1678,13 +1696,21 @@ const GrowthPlan = () => {
       case 38:
         return (
           <div key={step} className="space-y-6 animate-fade-in pb-8">
-            {/* Black Friday Banner */}
-            <div className="flex justify-center px-2">
+            {/* Black Friday Banner with Countdown */}
+            <div className="flex justify-center px-2 relative">
               <img 
                 src={blackFridayBanner} 
                 alt="Black Friday Sale" 
                 className="w-full max-w-[550px] h-auto rounded-lg"
               />
+              <div className="absolute top-1/2 right-[10%] -translate-y-1/2 bg-red-600 text-white px-6 py-3 rounded-lg border-2 border-red-700 shadow-lg">
+                <div className="text-2xl font-bold tabular-nums">
+                  {formatCountdown(countdown)}
+                </div>
+                <div className="text-xs uppercase tracking-wide">
+                  min &nbsp; sec
+                </div>
+              </div>
             </div>
 
             {/* Header */}
