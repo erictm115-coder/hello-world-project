@@ -1438,7 +1438,7 @@ const GrowthPlan = () => {
 
             {/* Stripe Payment Badges */}
             <div className="mt-6 flex justify-center">
-              <img src={stripePaymentBadges} alt="Powered by Stripe" className="w-full max-w-md h-auto" />
+              <img src={stripePaymentBadges} alt="Powered by Stripe" className="w-full max-w-xs h-auto" />
             </div>
           </div>;
       case 39:
