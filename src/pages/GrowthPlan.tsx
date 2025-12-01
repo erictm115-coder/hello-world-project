@@ -32,6 +32,7 @@ import featureMicrolearning from "@/assets/feature-microlearning.png";
 import featureScanBooks from "@/assets/feature-scan-books.png";
 import featureListenLearn from "@/assets/feature-listen-learn.png";
 import featureReadingHabit from "@/assets/feature-reading-habit.png";
+import reviewAvatars from "@/assets/review-avatars.png";
 import { Check, ArrowLeft, X, Lock, CreditCard, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -1501,8 +1502,13 @@ const GrowthPlan = () => {
               <div className="p-3 bg-muted/50 rounded-lg border border-border">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <User className="w-4 h-4 text-primary" />
+                    <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                      <img 
+                        src={reviewAvatars} 
+                        alt="christopher bowne" 
+                        className="w-full h-full object-cover"
+                        style={{ objectPosition: '0% 0%' }}
+                      />
                     </div>
                     <p className="text-xs text-muted-foreground font-medium">christopher bowne</p>
                   </div>
@@ -1521,8 +1527,13 @@ const GrowthPlan = () => {
               <div className="p-3 bg-muted/50 rounded-lg border border-border">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <User className="w-4 h-4 text-primary" />
+                    <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                      <img 
+                        src={reviewAvatars} 
+                        alt="whatwhatandp2" 
+                        className="w-full h-full object-cover"
+                        style={{ objectPosition: '33% 0%' }}
+                      />
                     </div>
                     <p className="text-xs text-muted-foreground font-medium">whatwhatandp2</p>
                   </div>
@@ -1541,8 +1552,13 @@ const GrowthPlan = () => {
               <div className="p-3 bg-muted/50 rounded-lg border border-border">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <User className="w-4 h-4 text-primary" />
+                    <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+                      <img 
+                        src={reviewAvatars} 
+                        alt="bro.mike" 
+                        className="w-full h-full object-cover"
+                        style={{ objectPosition: '66% 0%' }}
+                      />
                     </div>
                     <p className="text-xs text-muted-foreground font-medium">bro.mike</p>
                   </div>
