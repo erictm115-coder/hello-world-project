@@ -324,7 +324,6 @@ const GrowthPlan = () => {
                   src={welcomeIllustration}
                   alt="Welcome illustration"
                   className={`w-full max-w-[350px] h-auto ${getImageClass(welcomeIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   fetchPriority="high"
                   onLoad={() => handleImageLoad(welcomeIllustration)}
                 />
@@ -374,7 +373,6 @@ const GrowthPlan = () => {
                   src={bigPictureIllustration}
                   alt="Big picture thinking illustration"
                   className={`w-full max-w-[450px] h-auto ${getImageClass(bigPictureIllustration)}`}
-                  style={{ aspectRatio: '16/9' }}
                   fetchPriority="high"
                   onLoad={() => handleImageLoad(bigPictureIllustration)}
                 />
@@ -489,7 +487,6 @@ const GrowthPlan = () => {
                   src={mistakesIllustration}
                   alt="Mistakes illustration"
                   className={`w-full max-w-[350px] h-auto ${getImageClass(mistakesIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   fetchPriority="high"
                   onLoad={() => handleImageLoad(mistakesIllustration)}
                 />
@@ -603,7 +600,6 @@ const GrowthPlan = () => {
                   src={decisivenessIllustration}
                   alt="Decisiveness illustration"
                   className={`w-full max-w-[350px] h-auto ${getImageClass(decisivenessIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   loading="lazy"
                   onLoad={() => handleImageLoad(decisivenessIllustration)}
                 />
@@ -628,7 +624,6 @@ const GrowthPlan = () => {
                   src={honestIllustration}
                   alt="Thanks for being honest illustration"
                   className={`w-full max-w-[350px] h-auto ${getImageClass(honestIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   loading="lazy"
                   onLoad={() => handleImageLoad(honestIllustration)}
                 />
@@ -686,7 +681,6 @@ const GrowthPlan = () => {
                   src={extrovertIllustration}
                   alt="Cheers to the extrovert squad illustration"
                   className={`w-full max-w-[280px] h-auto ${getImageClass(extrovertIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   loading="lazy"
                   onLoad={() => handleImageLoad(extrovertIllustration)}
                 />
@@ -792,7 +786,6 @@ const GrowthPlan = () => {
                   src={motivatorIllustration}
                   alt="A friendly push motivator illustration"
                   className={`w-full max-w-[280px] h-auto ${getImageClass(motivatorIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   loading="lazy"
                   onLoad={() => handleImageLoad(motivatorIllustration)}
                 />
@@ -899,7 +892,6 @@ const GrowthPlan = () => {
                   src={honestIllustration}
                   alt="Boundaries illustration"
                   className={`w-full max-w-[400px] h-auto ${getImageClass(honestIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   loading="lazy"
                   onLoad={() => handleImageLoad(honestIllustration)}
                 />
@@ -970,7 +962,6 @@ const GrowthPlan = () => {
                   src={amazingCloudsIllustration}
                   alt="You're amazing illustration"
                   className={`w-full max-w-[400px] h-auto ${getImageClass(amazingCloudsIllustration)}`}
-                  style={{ aspectRatio: '16/9' }}
                   loading="lazy"
                   onLoad={() => handleImageLoad(amazingCloudsIllustration)}
                 />
@@ -998,7 +989,6 @@ const GrowthPlan = () => {
                 src={atomicHabitsBook} 
                 alt="Atomic Habits book cover" 
                 className={`w-full max-w-[200px] h-auto ${getImageClass(atomicHabitsBook)}`}
-                style={{ aspectRatio: '2/3' }}
                 onLoad={() => handleImageLoad(atomicHabitsBook)}
               />
             </div>
@@ -1036,7 +1026,6 @@ const GrowthPlan = () => {
                 src={winFriendsBook}
                 alt="How to Win Friends and Influence People book cover"
                 className={`w-full max-w-[200px] h-auto ${getImageClass(winFriendsBook)}`}
-                style={{ aspectRatio: '2/3' }}
                 onLoad={() => handleImageLoad(winFriendsBook)}
               />
             </div>
@@ -1074,7 +1063,6 @@ const GrowthPlan = () => {
                 src={deepWorkBook} 
                 alt="Deep Work book cover" 
                 className={`w-full max-w-[200px] h-auto ${getImageClass(deepWorkBook)}`}
-                style={{ aspectRatio: '2/3' }}
                 onLoad={() => handleImageLoad(deepWorkBook)}
               />
             </div>
@@ -1112,7 +1100,6 @@ const GrowthPlan = () => {
                 src={psychologyOfMoneyBook}
                 alt="The Psychology of Money book cover"
                 className={`w-full max-w-[200px] h-auto ${getImageClass(psychologyOfMoneyBook)}`}
-                style={{ aspectRatio: '2/3' }}
                 onLoad={() => handleImageLoad(psychologyOfMoneyBook)}
               />
             </div>
@@ -1151,7 +1138,6 @@ const GrowthPlan = () => {
                 src={workLifePodcast} 
                 alt="WorkLife podcast cover" 
                 className={`w-full max-w-[200px] h-auto ${getImageClass(workLifePodcast)}`}
-                style={{ aspectRatio: '1' }}
                 onLoad={() => handleImageLoad(workLifePodcast)}
               />
             </div>
@@ -1190,7 +1176,6 @@ const GrowthPlan = () => {
                 src={timFerrissAuthor} 
                 alt="Tim Ferriss portrait" 
                 className={`w-full max-w-[200px] h-auto ${getImageClass(timFerrissAuthor)}`}
-                style={{ aspectRatio: '1' }}
                 onLoad={() => handleImageLoad(timFerrissAuthor)}
               />
             </div>
@@ -1229,7 +1214,6 @@ const GrowthPlan = () => {
                 src={simonSinekAuthor} 
                 alt="Simon Sinek portrait" 
                 className={`w-full max-w-[200px] h-auto ${getImageClass(simonSinekAuthor)}`}
-                style={{ aspectRatio: '1' }}
                 onLoad={() => handleImageLoad(simonSinekAuthor)}
               />
             </div>
@@ -1266,7 +1250,6 @@ const GrowthPlan = () => {
                   src={celebrationIllustration}
                   alt="Celebration"
                   className={`w-full max-w-[300px] h-auto ${getImageClass(celebrationIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   loading="lazy"
                   onLoad={() => handleImageLoad(celebrationIllustration)}
                 />
@@ -1292,7 +1275,6 @@ const GrowthPlan = () => {
                   src={worldMap} 
                   alt="World map" 
                   className={`w-full max-w-[500px] h-auto ${getImageClass(worldMap)}`}
-                  style={{ aspectRatio: '2/1' }}
                   loading="lazy"
                   onLoad={() => handleImageLoad(worldMap)}
                 />
@@ -1461,7 +1443,6 @@ const GrowthPlan = () => {
                 src={deepkeepLogo} 
                 alt="Deepkeep" 
                 className={`h-10 w-auto ${getImageClass(deepkeepLogo)}`}
-                style={{ aspectRatio: '4/1' }}
                 onLoad={() => handleImageLoad(deepkeepLogo)}
               />
             </div>
@@ -1536,7 +1517,6 @@ const GrowthPlan = () => {
                   src={platformLogos} 
                   alt="iOS and Android" 
                   className={`h-12 w-auto ${getImageClass(platformLogos)}`}
-                  style={{ aspectRatio: '2/1' }}
                   onLoad={() => handleImageLoad(platformLogos)}
                 />
                 <p className="text-xs text-muted-foreground">You can use Deepkeep on iOS, Android and web</p>
@@ -1645,7 +1625,6 @@ const GrowthPlan = () => {
                 src={deepkeepLogo} 
                 alt="Deepkeep" 
                 className={`h-10 w-auto ${getImageClass(deepkeepLogo)}`}
-                style={{ aspectRatio: '4/1' }}
                 onLoad={() => handleImageLoad(deepkeepLogo)}
               />
             </div>
@@ -1656,7 +1635,6 @@ const GrowthPlan = () => {
                 src={becomeInteresting} 
                 alt="Become the most interesting person in the room" 
                 className={`w-full max-w-[600px] h-auto rounded-lg ${getImageClass(becomeInteresting)}`}
-                style={{ aspectRatio: '16/9' }}
                 onLoad={() => handleImageLoad(becomeInteresting)}
               />
             </div>
@@ -1948,7 +1926,6 @@ const GrowthPlan = () => {
                   src={celebrationIllustration}
                   alt="Success"
                   className={`w-full max-w-[300px] h-auto ${getImageClass(celebrationIllustration)}`}
-                  style={{ aspectRatio: '1' }}
                   onLoad={() => handleImageLoad(celebrationIllustration)}
                 />
               </div>
@@ -2011,7 +1988,6 @@ const GrowthPlan = () => {
                 src={deepkeepLogo} 
                 alt="deepkeep" 
                 className={`h-10 w-auto ${getImageClass(deepkeepLogo)}`}
-                style={{ aspectRatio: '4/1' }}
                 onLoad={() => handleImageLoad(deepkeepLogo)}
               />
               <div className="w-10" />
@@ -2038,7 +2014,6 @@ const GrowthPlan = () => {
                 src={deepkeepLogo} 
                 alt="deepkeep" 
                 className={`h-10 w-auto ${getImageClass(deepkeepLogo)}`}
-                style={{ aspectRatio: '4/1' }}
                 onLoad={() => handleImageLoad(deepkeepLogo)}
               />
               <div className="w-10" /> {/* Spacer for centering */}
