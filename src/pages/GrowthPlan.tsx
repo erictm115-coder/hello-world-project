@@ -954,7 +954,7 @@ const GrowthPlan = () => {
           </div>;
       case 30:
         return <div key={step} className="flex flex-col min-h-[calc(100vh-280px)] fade-content animate-fade-in">
-            <div className="flex-1 flex flex-col justify-center space-y-6 text-center pt-16">
+            <div className="flex-1 flex flex-col justify-center space-y-6 text-center pt-[68px]">
               <div className="flex justify-center animate-fade-in">
                 <img src={worldMap} alt="World map" className={`w-full max-w-[500px] h-auto ${getImageClass(worldMap)}`} loading="lazy" onLoad={() => handleImageLoad(worldMap)} />
               </div>
