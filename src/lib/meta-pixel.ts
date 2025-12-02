@@ -10,13 +10,20 @@ declare global {
   }
 }
 
+// Test event code for Meta Pixel testing - remove in production
+const TEST_EVENT_CODE = 'TEST40619';
+
 export const trackMetaEvent = (
   eventName: string,
   params?: Record<string, any>
 ) => {
   if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('track', eventName, params);
-    console.log('Meta Pixel event tracked:', eventName, params);
+    const eventParams = {
+      ...params,
+      test_event_code: TEST_EVENT_CODE,
+    };
+    window.fbq('track', eventName, eventParams);
+    console.log('Meta Pixel event tracked:', eventName, eventParams);
   }
 };
 
