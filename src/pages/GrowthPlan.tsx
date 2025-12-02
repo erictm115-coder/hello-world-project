@@ -84,6 +84,21 @@ const GrowthPlan = () => {
   const {
     toast
   } = useToast();
+
+  // Restore email and plan from localStorage on mount
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('deepkeep_email');
+    const storedPlan = localStorage.getItem('deepkeep_plan');
+    
+    if (storedEmail || storedPlan) {
+      setAnswers(prev => ({
+        ...prev,
+        ...(storedEmail && { email: storedEmail }),
+        ...(storedPlan && { plan: storedPlan })
+      }));
+    }
+  }, []);
+
   const handleImageLoad = (imageSrc: string) => {
     setLoadedImages(prev => new Set(prev).add(imageSrc));
   };
@@ -236,6 +251,11 @@ const GrowthPlan = () => {
       ...answers,
       [questionKey]: value
     });
+    
+    // Persist important values to localStorage immediately
+    if (questionKey === 'email' || questionKey === 'plan') {
+      localStorage.setItem(`deepkeep_${questionKey}`, value);
+    }
   };
   const handleStripeCheckout = async () => {
     console.log('handleStripeCheckout called', {
