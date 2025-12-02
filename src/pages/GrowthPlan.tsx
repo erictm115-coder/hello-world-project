@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { trackInitiateCheckout, trackPurchase, trackCompleteRegistration, trackLead } from "@/lib/meta-pixel";
 import deepkeepLogo from "@/assets/deepkeep-logo.png";
 import welcomeIllustration from "@/assets/welcome-illustration.png";
 import bigPictureIllustration from "@/assets/big-picture-illustration.png";
@@ -110,6 +111,16 @@ const GrowthPlan = () => {
           } else if (data) {
             console.log('Session details retrieved:', data);
             setStripeCustomerId(data.customerId);
+
+            // Track Purchase event after successful payment
+            const storedPlan = localStorage.getItem('deepkeep_plan');
+            const planValues: Record<string, number> = {
+              '1_month': 11.07,
+              '3_months': 19.98,
+              '1_year': 49.98
+            };
+            const purchaseValue = storedPlan ? planValues[storedPlan] || 19.98 : 19.98;
+            trackPurchase(purchaseValue, 'EUR', sessionId);
 
             // Also load email from localStorage as backup
             const storedEmail = localStorage.getItem('deepkeep_email');
@@ -241,8 +252,18 @@ const GrowthPlan = () => {
       return;
     }
 
-    // Store email in localStorage for later retrieval
+    // Store email and plan in localStorage for later retrieval
     localStorage.setItem('deepkeep_email', answers.email);
+    localStorage.setItem('deepkeep_plan', answers.plan);
+    
+    // Track InitiateCheckout event
+    const planValues: Record<string, number> = {
+      '1_month': 11.07,
+      '3_months': 19.98,
+      '1_year': 49.98
+    };
+    trackInitiateCheckout(planValues[answers.plan] || 19.98, 'EUR');
+    
     setIsProcessing(true);
     console.log('Calling create-checkout with:', {
       planType: answers.plan,
@@ -338,6 +359,9 @@ const GrowthPlan = () => {
           console.log('Sync successful:', syncData);
           setSyncComplete(true);
         }
+
+        // Track CompleteRegistration event
+        trackCompleteRegistration();
 
         // Move to next step to show credentials
         setStep(40);
