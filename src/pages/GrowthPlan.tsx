@@ -1025,9 +1025,6 @@ const GrowthPlan = () => {
           emoji: "📈",
           text: "Advancing in your career"
         }, {
-          emoji: "🚀",
-          text: "Starting your own business"
-        }, {
           emoji: "💖",
           text: "Strengthening a relationship"
         }, {
@@ -1052,7 +1049,7 @@ const GrowthPlan = () => {
             growthDrivers: newSelection
           });
         };
-        return <div key={step} className="flex flex-col min-h-[calc(100vh-360px)] animate-fade-in">
+        return <div key={step} className="flex flex-col min-h-[calc(100vh-420px)] animate-fade-in">
             <div className="flex-1 flex flex-col justify-center">
               <h2 className="text-xl font-semibold text-foreground text-center leading-tight mb-6 animate-fade-in-delay-1">
                 What drives your self-growth journey?
